@@ -1,0 +1,2 @@
+schema "albion_square" {
+}

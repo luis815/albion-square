@@ -1,0 +1,35 @@
+{
+  "name": "albion-square",
+  "description": "Albion Online companion app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "21.7.3",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "prettier": "prettier --write \"**/*.{js,ts,css,scss,html,jsx,tsx,json,yaml}\"",
+    "clean": "rm -rf node_modules",
+    "start": "pm2 start --no-daemon ecosystem.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snow-fox-studio-llc/albion-square.git"
+  },
+  "keywords": [],
+  "author": "luis815",
+  "license": "GNU AGPLv3",
+  "bugs": {
+    "url": "https://github.com/snow-fox-studio-llc/albion-square/issues"
+  },
+  "homepage": "https://github.com/snow-fox-studio-llc/albion-square#readme",
+  "devDependencies": {
+    "prettier": "3.1.0"
+  },
+  "workspaces": [
+    "packages-node/*"
+  ],
+  "dependencies": {
+    "pm2": "^5.3.0"
+  },
+  "packageManager": "pnpm@8.15.7"
+}

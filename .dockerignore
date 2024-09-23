@@ -1,0 +1,43 @@
+# -----
+# root
+# -----
+
+# moon
+.moon/cache
+.moon/docker
+
+# java, gradle
+.gradle/
+**/bin/
+**/build/
+
+# intellij
+.idea/
+
+# node
+**/node_modules/
+
+# mac
+**/.DS_Store
+
+# env
+**/.env
+
+# docker
+Dockerfile
+docker-compose.yaml
+.dockerignore
+
+# -----
+# packages-java/spring-app
+# -----
+**/application-local.properties
+
+# -----
+# packages-node/svelte-app
+# -----
+**/.svelte-kit
+**/package
+**/.env.?
+**/vite.config.js.timestamp-?
+**/vite.config.ts.timestamp-?

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="localization-xml.xsd"/>
+  <xs:element name="tmx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="body"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tu"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tuv"/>
+      </xs:sequence>
+      <xs:attribute name="tuid" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tuv">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="seg"/>
+      </xs:sequence>
+      <xs:attribute ref="xml:lang" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="seg" type="xs:string"/>
+</xs:schema>

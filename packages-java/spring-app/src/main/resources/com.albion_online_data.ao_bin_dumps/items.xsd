@@ -1,0 +1,1092 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="shopcategories"/>
+        <xs:element ref="hideoutitem"/>
+        <xs:element maxOccurs="unbounded" ref="trackingitem"/>
+        <xs:element maxOccurs="unbounded" ref="farmableitem"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="consumablefrominventoryitem"/>
+          <xs:element ref="consumableitem"/>
+          <xs:element ref="crystalleagueitem"/>
+          <xs:element ref="equipmentitem"/>
+          <xs:element ref="furnitureitem"/>
+          <xs:element ref="journalitem"/>
+          <xs:element ref="labourercontract"/>
+          <xs:element ref="mount"/>
+          <xs:element ref="mountskin"/>
+          <xs:element ref="simpleitem"/>
+          <xs:element ref="transformationweapon"/>
+          <xs:element ref="weapon"/>
+        </xs:choice>
+        <xs:element maxOccurs="unbounded" ref="siegebanner"/>
+        <xs:element ref="killtrophy"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopcategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="shopcategory"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopcategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="shopsubcategory"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopsubcategory">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hideoutitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="itemvalue" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistance" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistanceintunnel" use="required" type="xs:integer"/>
+      <xs:attribute name="placementduration" use="required" type="xs:integer"/>
+      <xs:attribute name="primetimedurationminutes" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trackingitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="craftingcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_findtrack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_inspecttrack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="findtrackspell" use="required" type="xs:NCName"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="trackingfamebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="trackingtimereduction" use="required" type="xs:decimal"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uisprite" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="farmableitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="craftingrequirements"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="harvest"/>
+        <xs:element minOccurs="0" ref="grownitem"/>
+        <xs:element minOccurs="0" ref="consumption"/>
+        <xs:element minOccurs="0" ref="products"/>
+      </xs:sequence>
+      <xs:attribute name="activefarmactiondurationseconds" type="xs:integer"/>
+      <xs:attribute name="activefarmbonus" type="xs:decimal"/>
+      <xs:attribute name="activefarmcyclelengthseconds" type="xs:integer"/>
+      <xs:attribute name="activefarmfocuscost" type="xs:integer"/>
+      <xs:attribute name="activefarmmaxcycles" type="xs:integer"/>
+      <xs:attribute name="animationid" use="required" type="xs:NCName"/>
+      <xs:attribute name="destroyable" use="required" type="xs:boolean"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="kind" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="pickupable" use="required" type="xs:boolean"/>
+      <xs:attribute name="placefame" use="required" type="xs:integer"/>
+      <xs:attribute name="prefabname" type="xs:NCName"/>
+      <xs:attribute name="prefabscale" type="xs:decimal"/>
+      <xs:attribute name="resourcevalue" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tile" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoplace" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="harvest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="seed"/>
+      </xs:sequence>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="growtime" use="required" type="xs:integer"/>
+      <xs:attribute name="lootchance" use="required" type="xs:integer"/>
+      <xs:attribute name="lootlist" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="seed">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="chance" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="grownitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="offspring"/>
+      </xs:sequence>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="growtime" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="offspring">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="chance" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumption">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="food"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="food">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="acceptedfood"/>
+      </xs:sequence>
+      <xs:attribute name="hungryoverheadicon" use="required"/>
+      <xs:attribute name="lossbeforehungry" type="xs:integer"/>
+      <xs:attribute name="nutritionmax" use="required" type="xs:integer"/>
+      <xs:attribute name="secondspernutrition" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="acceptedfood">
+    <xs:complexType>
+      <xs:attribute name="favorite" type="xs:NCName"/>
+      <xs:attribute name="favoritebonus" type="xs:integer"/>
+      <xs:attribute name="foodcategory" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="products">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="product"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="product">
+    <xs:complexType>
+      <xs:attribute name="actionname" use="required"/>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="lootchance" use="required" type="xs:integer"/>
+      <xs:attribute name="lootlist" use="required" type="xs:NCName"/>
+      <xs:attribute name="productiontime" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumablefrominventoryitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="allowfullstackusage" type="xs:boolean"/>
+      <xs:attribute name="consumespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="decayitem" type="xs:NCName"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="estimatedmarketvalueoverride" type="xs:integer"/>
+      <xs:attribute name="hidedecayoverlay" type="xs:boolean"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="logconsumption" type="xs:boolean"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay2" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtouse" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumableitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="consumespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="famevalue" type="xs:integer"/>
+      <xs:attribute name="fishingfame" type="xs:integer"/>
+      <xs:attribute name="fishingminigamesetting" type="xs:NCName"/>
+      <xs:attribute name="foodcategory" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="resourcetype" type="xs:NCName"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="crystalleagueitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbestoredinbattlevault" use="required" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="descvariable0" use="required"/>
+      <xs:attribute name="enchantmentlevel" use="required" type="xs:integer"/>
+      <xs:attribute name="itemvalue" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="namelocatag" use="required"/>
+      <xs:attribute name="resourcetype" use="required" type="xs:NCName"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" use="required" type="xs:boolean"/>
+      <xs:attribute name="uisprite" use="required"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="equipmentitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="SocketPreset"/>
+          <xs:element ref="craftingrequirements"/>
+          <xs:element ref="craftingspelllist"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="attackspeedbonus" type="xs:decimal"/>
+      <xs:attribute name="beardstate" type="xs:NCName"/>
+      <xs:attribute name="bonusccdurationvsmobs" use="required" type="xs:decimal"/>
+      <xs:attribute name="bonusccdurationvsplayers" use="required" type="xs:decimal"/>
+      <xs:attribute name="bonusdefensevsmobs" type="xs:decimal"/>
+      <xs:attribute name="bonusdefensevsplayers" type="xs:decimal"/>
+      <xs:attribute name="canbeovercharged" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="crowdcontrolresistance" use="required" type="xs:integer"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:decimal"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="energycostreduction" type="xs:decimal"/>
+      <xs:attribute name="energymax" use="required" type="xs:integer"/>
+      <xs:attribute name="energyregenerationbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="facestate" type="xs:NCName"/>
+      <xs:attribute name="famevalue" type="xs:integer"/>
+      <xs:attribute name="healbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="healmodifier" type="xs:decimal"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="magiccasttimereduction" type="xs:decimal"/>
+      <xs:attribute name="magiccooldownreduction" use="required" type="xs:decimal"/>
+      <xs:attribute name="magicresistance" use="required" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="mainhandanimationtype" type="xs:NCName"/>
+      <xs:attribute name="masterymodifier" type="xs:decimal"/>
+      <xs:attribute name="maxload" type="xs:integer"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="movespeed" type="xs:integer"/>
+      <xs:attribute name="movespeedbonus" type="xs:integer"/>
+      <xs:attribute name="offhandanimationtype" type="xs:NCName"/>
+      <xs:attribute name="omitmesh" type="xs:boolean"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalarmor" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="physicalspelldamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="scalemodifier" type="xs:decimal"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="skincolormodifier" type="xs:integer"/>
+      <xs:attribute name="skincount" type="xs:integer"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="threatbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="furnitureitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="cheatprovider"/>
+          <xs:element ref="container"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+        <xs:element minOccurs="0" ref="repairkit"/>
+      </xs:sequence>
+      <xs:attribute name="accessrightspreset" type="xs:NCName"/>
+      <xs:attribute name="customizewithguildlogo" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="durability" type="xs:decimal"/>
+      <xs:attribute name="durabilitylossperdayfactor" type="xs:decimal"/>
+      <xs:attribute name="durabilitylossperusefactor" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="labourerfurnituretype" type="xs:NCName"/>
+      <xs:attribute name="labourerhappiness" type="xs:integer"/>
+      <xs:attribute name="labourersaffected" type="xs:NCName"/>
+      <xs:attribute name="labourersperfurnitureitem" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="placeableindoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableindungeons" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableinexpeditions" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableonlyonislands" type="xs:boolean"/>
+      <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="residencyslots" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tile"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cheatprovider">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="container">
+    <xs:complexType>
+      <xs:attribute name="capacity" use="required" type="xs:integer"/>
+      <xs:attribute name="weightlimit" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="repairkit">
+    <xs:complexType>
+      <xs:attribute name="maxtier" use="required" type="xs:integer"/>
+      <xs:attribute name="repaircostfactor" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="journalitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+        <xs:element ref="famefillingmissions"/>
+        <xs:element ref="lootlist"/>
+      </xs:sequence>
+      <xs:attribute name="baselootamount" use="required" type="xs:decimal"/>
+      <xs:attribute name="fasttravelfactor" type="xs:integer"/>
+      <xs:attribute name="maxfame" use="required" type="xs:integer"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="famefillingmissions">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="craftitemfame"/>
+        <xs:element ref="fameearned"/>
+        <xs:element ref="fishingfame"/>
+        <xs:element ref="gatherfame"/>
+        <xs:element ref="killmobfame"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftitemfame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="validitem"/>
+      </xs:sequence>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fameearned">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fishingfame">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="gatherfame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="validitem"/>
+      </xs:sequence>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="killmobfame">
+    <xs:complexType>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lootlist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="loot"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="loot">
+    <xs:complexType>
+      <xs:attribute name="itemamount" type="xs:integer"/>
+      <xs:attribute name="itemenchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="itemname" type="xs:NCName"/>
+      <xs:attribute name="labourerfame" use="required" type="xs:integer"/>
+      <xs:attribute name="silveramount" type="xs:integer"/>
+      <xs:attribute name="weight" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="labourercontract">
+    <xs:complexType>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="FootStepVfxPreset"/>
+          <xs:element ref="SocketPreset"/>
+          <xs:element ref="craftingspelllist"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="mountspelllist"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="canuseinfactionwarfare" type="xs:boolean"/>
+      <xs:attribute name="canuseingvg" type="xs:boolean"/>
+      <xs:attribute name="canusetownportal" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="despawneffect" use="required"/>
+      <xs:attribute name="despawneffectscaling" use="required" type="xs:integer"/>
+      <xs:attribute name="dismountbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="dismounttime" use="required" type="xs:integer"/>
+      <xs:attribute name="durability" use="required" type="xs:decimal"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_mounting" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack_mounted" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell_mounted" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="forceddismountbuff" type="xs:NCName"/>
+      <xs:attribute name="forceddismountcooldown" use="required" type="xs:integer"/>
+      <xs:attribute name="forceddismountspellcooldown" use="required" type="xs:decimal"/>
+      <xs:attribute name="fulldismountcooldown" use="required" type="xs:integer"/>
+      <xs:attribute name="halfmountedbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="halfmountprefaboverride"/>
+      <xs:attribute name="halfmountrange" use="required" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hostiledismountbuff" type="xs:NCName"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="longhostiledismountbuff" type="xs:NCName"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mountcategory" type="xs:NCName"/>
+      <xs:attribute name="mountedbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="mounthitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="mounthitpointsregeneration" use="required" type="xs:decimal"/>
+      <xs:attribute name="mounttime" use="required" type="xs:integer"/>
+      <xs:attribute name="nametagoffset" type="xs:decimal"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="prefabname" use="required"/>
+      <xs:attribute name="prefabscaling" use="required" type="xs:decimal"/>
+      <xs:attribute name="remountdistance" use="required" type="xs:integer"/>
+      <xs:attribute name="remounttime" use="required" type="xs:decimal"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uicraftsoundfinish" use="required" type="xs:NCName"/>
+      <xs:attribute name="uicraftsoundstart" use="required"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="vfxAddonKeyword" use="required" type="xs:NCName"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountspelllist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="mountspell"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountspell">
+    <xs:complexType>
+      <xs:attribute name="spellslot" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountskin">
+    <xs:complexType>
+      <xs:choice maxOccurs="unbounded">
+        <xs:element ref="AssetVfxPreset"/>
+        <xs:element ref="AudioInfo"/>
+        <xs:element ref="FootStepVfxPreset"/>
+        <xs:element ref="SocketPreset"/>
+      </xs:choice>
+      <xs:attribute name="despawneffect" use="required"/>
+      <xs:attribute name="despawneffectscaling" use="required" type="xs:integer"/>
+      <xs:attribute name="nametagoffset" type="xs:integer"/>
+      <xs:attribute name="prefabname" use="required" type="xs:NCName"/>
+      <xs:attribute name="prefabscaling" use="required" type="xs:decimal"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="vfxAddonKeyword" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="simpleitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="replaceondeath"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbestoredinbattlevault" type="xs:boolean"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="descvariable0"/>
+      <xs:attribute name="descvariable1"/>
+      <xs:attribute name="dontgivefameoncraft" type="xs:boolean"/>
+      <xs:attribute name="droponpvpknockdown" type="xs:boolean"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="famevalue" type="xs:decimal"/>
+      <xs:attribute name="fasttravelfactor" type="xs:integer"/>
+      <xs:attribute name="fishingfame" type="xs:integer"/>
+      <xs:attribute name="fishingminigamesetting" type="xs:NCName"/>
+      <xs:attribute name="foodcategory" type="xs:NCName"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:decimal"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="resourcetype" type="xs:NCName"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay2" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="replaceondeath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="replacementitem"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="replacementitem">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transformationweapon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="attackvariations"/>
+        <xs:element ref="projectile"/>
+        <xs:element ref="SocketPreset"/>
+        <xs:element ref="craftingrequirements"/>
+        <xs:element ref="craftingspelllist"/>
+        <xs:element ref="AudioInfo"/>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="attackdamage" use="required" type="xs:integer"/>
+      <xs:attribute name="attackrange" use="required" type="xs:integer"/>
+      <xs:attribute name="attackspeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="focusfireprotectionpenetration" use="required" type="xs:integer"/>
+      <xs:attribute name="fxbonename" use="required" type="xs:NCName"/>
+      <xs:attribute name="fxboneoffset" use="required"/>
+      <xs:attribute name="healmodifier" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" use="required" type="xs:integer"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" use="required" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="mainhandanimationtype" use="required" type="xs:NCName"/>
+      <xs:attribute name="masterymodifier" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalspelldamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="transformation" use="required" type="xs:NCName"/>
+      <xs:attribute name="twohanded" use="required" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required"/>
+      <xs:attribute name="uisprite" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="weapon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="canharvest"/>
+        <xs:element minOccurs="0" ref="attackvariations"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="projectile"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="SocketPreset"/>
+          <xs:element ref="attackvfx"/>
+          <xs:element ref="craftingrequirements"/>
+          <xs:element ref="craftingspelllist"/>
+          <xs:element ref="enchantments"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="attackbuildingdamage" type="xs:decimal"/>
+      <xs:attribute name="attackdamage" type="xs:integer"/>
+      <xs:attribute name="attackdamagetimefactor" type="xs:decimal"/>
+      <xs:attribute name="attackendanimgaptime" type="xs:decimal"/>
+      <xs:attribute name="attackrange" type="xs:decimal"/>
+      <xs:attribute name="attackspeed" type="xs:decimal"/>
+      <xs:attribute name="attackspeedbonus" type="xs:integer"/>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+      <xs:attribute name="attackupperbodyblendtime" type="xs:decimal"/>
+      <xs:attribute name="bonusccdurationvsmobs" type="xs:integer"/>
+      <xs:attribute name="bonusccdurationvsplayers" type="xs:integer"/>
+      <xs:attribute name="bonusdefensevsmobs" type="xs:integer"/>
+      <xs:attribute name="bonusdefensevsplayers" type="xs:integer"/>
+      <xs:attribute name="canbeovercharged" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="crowdcontrolresistance" type="xs:integer"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="energymax" type="xs:integer"/>
+      <xs:attribute name="energyregenerationbonus" type="xs:integer"/>
+      <xs:attribute name="fishing" type="xs:boolean"/>
+      <xs:attribute name="fishingspeed" type="xs:decimal"/>
+      <xs:attribute name="focusfireprotectionpenetration" type="xs:decimal"/>
+      <xs:attribute name="fxbonename" type="xs:NCName"/>
+      <xs:attribute name="fxboneoffset"/>
+      <xs:attribute name="healbonus" type="xs:integer"/>
+      <xs:attribute name="healmodifier" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hitpointsmax" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" type="xs:decimal"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" type="xs:integer"/>
+      <xs:attribute name="magiccasttimereduction" type="xs:integer"/>
+      <xs:attribute name="magiccooldownreduction" type="xs:integer"/>
+      <xs:attribute name="magicresistance" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" type="xs:integer"/>
+      <xs:attribute name="mainhandanimationtype" use="required"/>
+      <xs:attribute name="mainhandanimationtype_attack" type="xs:NCName"/>
+      <xs:attribute name="mainhandanimationtype_repairbuilding"/>
+      <xs:attribute name="masterymodifier" type="xs:decimal"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="movespeedbonus" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalarmor" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" type="xs:integer"/>
+      <xs:attribute name="physicalspelldamagebonus" type="xs:integer"/>
+      <xs:attribute name="repairbuildingdamage" type="xs:integer"/>
+      <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="skincount" type="xs:integer"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="threatbonus" type="xs:integer"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="triggershealingsickness" type="xs:boolean"/>
+      <xs:attribute name="twohanded" use="required" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NMTOKEN"/>
+      <xs:attribute name="unequipincombat" type="xs:boolean"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="canharvest">
+    <xs:complexType>
+      <xs:attribute name="resourcetype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="siegebanner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="referencespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" use="required" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="killtrophy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" use="required" type="xs:NCName"/>
+      <xs:attribute name="placeableindoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableindungeons" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableinexpeditions" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableonlyonislands" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" use="required" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uisprite" use="required"/>
+      <xs:attribute name="uniquename" use="required"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftingrequirements">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="vanityunlocked"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="currency"/>
+          <xs:element ref="playerfactionstanding"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="mistcitystanding"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftresource"/>
+      </xs:sequence>
+      <xs:attribute name="amountcrafted" type="xs:integer"/>
+      <xs:attribute name="compensategold" type="xs:integer"/>
+      <xs:attribute name="craftingfocus" type="xs:integer"/>
+      <xs:attribute name="craftsingleperdefault" type="xs:boolean"/>
+      <xs:attribute name="forcesinglecraft" type="xs:boolean"/>
+      <xs:attribute name="gold" type="xs:integer"/>
+      <xs:attribute name="returnproductnotresource" type="xs:boolean"/>
+      <xs:attribute name="salvageitemfactor" type="xs:decimal"/>
+      <xs:attribute name="salvagesilverfactor" type="xs:integer"/>
+      <xs:attribute name="silver" type="xs:integer"/>
+      <xs:attribute name="swaptransaction" type="xs:boolean"/>
+      <xs:attribute name="time" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vanityunlocked">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="currency">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="playerfactionstanding">
+    <xs:complexType>
+      <xs:attribute name="faction" use="required" type="xs:NCName"/>
+      <xs:attribute name="minstanding" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mistcitystanding">
+    <xs:complexType>
+      <xs:attribute name="minstanding" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftresource">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="maxreturnamount" type="xs:integer"/>
+      <xs:attribute name="preservequality" type="xs:boolean"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AudioInfo">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftingspelllist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="craftspell"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftspell">
+    <xs:complexType>
+      <xs:attribute name="slots" type="xs:integer"/>
+      <xs:attribute name="tag" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SocketPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AssetVfxPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enchantments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="enchantment"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enchantment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="upgraderequirements"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" type="xs:integer"/>
+      <xs:attribute name="consumespell" type="xs:NCName"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="durability" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" use="required" type="xs:integer"/>
+      <xs:attribute name="itempower" type="xs:integer"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="upgraderequirements">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="upgraderesource"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="upgraderesource">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validitem">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attackvariations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="attack"/>
+      </xs:sequence>
+      <xs:attribute name="attackchaintime" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="attackvfx"/>
+      </xs:sequence>
+      <xs:attribute name="attackdamagefactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attackdamagetimefactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attackspeedfactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="projectile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="impactvfx"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+      </xs:sequence>
+      <xs:attribute name="flyspeed" use="required" type="xs:integer"/>
+      <xs:attribute name="hitsocket" use="required" type="xs:NCName"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="startsocket" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="impactvfx">
+    <xs:complexType>
+      <xs:attribute name="impactsocket" use="required" type="xs:NCName"/>
+      <xs:attribute name="prefab" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attackvfx">
+    <xs:complexType>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="visibility" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FootStepVfxPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
