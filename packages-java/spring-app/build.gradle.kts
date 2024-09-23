@@ -40,6 +40,7 @@ dependencies {
 	implementation("io.github.mojtabaj:c-webp:1.0.2")
 	implementation("org.apache.commons:commons-lang3:3.14.0")
 	implementation("org.springframework.boot:spring-boot-starter-web:3.3.2")
+	implementation("org.springframework.boot:spring-boot-starter-actuator:3.3.4")
 }
 
 tasks.withType<Test> {

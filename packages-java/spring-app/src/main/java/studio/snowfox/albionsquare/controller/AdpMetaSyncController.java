@@ -1,6 +1,8 @@
 package studio.snowfox.albionsquare.controller;
 
 import jakarta.xml.bind.JAXBException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
@@ -9,9 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import studio.snowfox.albionsquare.service.AdpMetaSyncService;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 @Log
 @RestController
