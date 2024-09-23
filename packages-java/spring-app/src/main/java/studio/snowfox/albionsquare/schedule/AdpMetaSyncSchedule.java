@@ -1,14 +1,13 @@
 package studio.snowfox.albionsquare.schedule;
 
 import jakarta.xml.bind.JAXBException;
+import java.io.IOException;
+import java.net.URISyntaxException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 import studio.snowfox.albionsquare.service.AdpMetaSyncService;
-
-import java.io.IOException;
-import java.net.URISyntaxException;
 
 @Component
 @Log
