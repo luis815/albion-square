@@ -24,4 +24,4 @@ RUN ./gradlew assemble
 
 ENV NODE_ENV=production
 
-CMD ["sleep", "infinity"]
+CMD ["./gradlew", "spring-app:bootRun"]
