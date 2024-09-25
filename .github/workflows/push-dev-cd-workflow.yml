@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Dev CD
 
 on:
   workflow_dispatch:
@@ -6,18 +6,35 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  spring-app-build:
+    name: Spring App Build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-    - name: Build Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/snow-fox-studio-llc/albion-square:latest
-    - name: Login to GitHub container registry
-      uses: docker/login-action@v1
-      with:
-        registry: ghcr.io
-        username: ${{github.actor}}
-        password: ${{secrets.GITHUB_TOKEN}}
-    - name: Push Docker image
-      run: docker push ghcr.io/snow-fox-studio-llc/albion-square:latest
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Docker Build
+        run: docker build . --file spring-app.Dockerfile --tag ghcr.io/snow-fox-studio-llc/albion-square-spring-app:dev-latest
+      - name: Login to GitHub container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      - name: Push Docker image
+        run: docker push ghcr.io/snow-fox-studio-llc/albion-square-spring-app:dev-latest
+  svelte-app-build:
+    name: Svelte App Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Docker Build
+        run: docker build . --file svelte-app.Dockerfile --tag ghcr.io/snow-fox-studio-llc/albion-square-svelte-app:dev-latest
+      - name: Login to GitHub container registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{github.actor}}
+          password: ${{secrets.GITHUB_TOKEN}}
+      - name: Push Docker image
+        run: docker push ghcr.io/snow-fox-studio-llc/albion-square-svelte-app:dev-latest
