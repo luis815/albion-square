@@ -12,9 +12,9 @@ USER node
 WORKDIR /home/node
 COPY --chown=node:node . .
 
-ENV NODE_ENV=production
-
 RUN pnpm install
 RUN pnpm run --filter @as/svelte-app build
+
+ENV NODE_ENV=production
 
 CMD ["sleep", "infinity"]
