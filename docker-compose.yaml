@@ -1,3 +1,7 @@
 services:
-  albion-square:
-    build: ./
+  albion-square-spring-app:
+    build:
+      dockerfile: ./spring-app.Dockerfile
+  albion-square-svelte-app:
+    build:
+      dockerfile: ./svelte-app.Dockerfile
