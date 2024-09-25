@@ -1,9 +1,9 @@
-name: Docker Image CI
+name: Main CD
 
 on:
   workflow_dispatch:
   push:
-    branches: [ "dev" ]
+    branches: [ "main" ]
 
 jobs:
   spring-app-build:
