@@ -3,7 +3,7 @@ name: Dev CD
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: [ "dev" ]
 
 jobs:
   spring-app-build:
