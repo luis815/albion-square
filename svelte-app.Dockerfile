@@ -17,4 +17,4 @@ RUN pnpm run --filter @as/svelte-app build
 
 ENV NODE_ENV=production
 
-CMD ["sleep", "infinity"]
+CMD ["node", "./packages-node/svelte-app/build"]
