@@ -37,10 +37,25 @@ public class AdpMetaSyncService {
     private final AlbionOnlineLocalizationRepository albionOnlineLocalizationRepository;
 
     @Transactional(isolation = Isolation.SERIALIZABLE)
-    @Async
-    public void processAll() throws URISyntaxException, IOException, JAXBException {
+    public void processAll() {
+        this.handleProcessAll();
+    }
 
-        GitHubCommitMetaJson latestGitHubCommitMetaJson = this.fetchLatestGitHubCommitMeta();
+    @Async
+    @Transactional(isolation = Isolation.SERIALIZABLE)
+    public void processAllAsync() {
+        this.handleProcessAll();
+    }
+
+    private void handleProcessAll() {
+        GitHubCommitMetaJson latestGitHubCommitMetaJson = null;
+
+        try {
+            latestGitHubCommitMetaJson = this.fetchLatestGitHubCommitMeta();
+        } catch (URISyntaxException | IOException e) {
+            throw new RuntimeException(e);
+        }
+
         String sha = latestGitHubCommitMetaJson.getSha();
 
         AdpMetaLog adpMetaLog = this.adpMetaLogRepository
@@ -67,35 +82,41 @@ public class AdpMetaSyncService {
                 this.adpMetaLogRepository.save(adpMetaLog);
             }
             default -> {
-                log.severe("Status not supported");
-                return;
+                throw new RuntimeException("Status not supported");
             }
         }
-
-        log.info("Processing items");
 
         adpMetaLog.setStatus(GenericStatus.IN_PROGRESS);
         this.adpMetaLogRepository.save(adpMetaLog);
 
-        Items items = this.fetchItemsByCommitHash(sha);
+        try {
+            log.info("Processing items");
 
-        StringWriter itemStringWriter = new StringWriter();
-        JAXBContext.newInstance(Items.class).createMarshaller().marshal(items, itemStringWriter);
-        adpMetaLog.setRawAdpItems(itemStringWriter.toString());
+            Items items = this.fetchItemsByCommitHash(sha);
 
-        this.processItems(items, sha);
+            StringWriter itemStringWriter = new StringWriter();
+            JAXBContext.newInstance(Items.class).createMarshaller().marshal(items, itemStringWriter);
+            adpMetaLog.setRawAdpItems(itemStringWriter.toString());
 
-        log.info("Processing tmx");
+            this.processItems(items, sha);
 
-        Tmx tmx = this.fetchTmxByCommitHash(sha);
+            log.info("Processing tmx");
 
-        StringWriter tmxStringWriter = new StringWriter();
-        JAXBContext.newInstance(Tmx.class).createMarshaller().marshal(tmx, tmxStringWriter);
-        adpMetaLog.setRawAdpTmx(tmxStringWriter.toString());
+            Tmx tmx = this.fetchTmxByCommitHash(sha);
 
-        this.processTmx(tmx, sha);
+            StringWriter tmxStringWriter = new StringWriter();
+            JAXBContext.newInstance(Tmx.class).createMarshaller().marshal(tmx, tmxStringWriter);
+            adpMetaLog.setRawAdpTmx(tmxStringWriter.toString());
+
+            this.processTmx(tmx, sha);
+        } catch (MalformedURLException | URISyntaxException | JAXBException e) {
+            adpMetaLog.setStatus(GenericStatus.FAILED);
+            this.adpMetaLogRepository.save(adpMetaLog);
+            throw new RuntimeException(e);
+        }
 
         adpMetaLog.setStatus(GenericStatus.SUCCESS);
+        this.adpMetaLogRepository.save(adpMetaLog);
 
         log.info("Done");
     }

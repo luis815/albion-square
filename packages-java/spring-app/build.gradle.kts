@@ -3,7 +3,6 @@ plugins {
 	id("org.springframework.boot") version "3.1.11"
 	id("io.spring.dependency-management") version "1.1.4"
 	id("org.hibernate.orm") version "6.2.24.Final"
-	id("org.graalvm.buildtools.native") version "0.9.28"
 	id("com.github.bjornvester.xjc") version "1.8.1"
 	id("com.diffplug.spotless") version "6.25.0"
 }
@@ -36,7 +35,7 @@ dependencies {
 	testImplementation("org.springframework.batch:spring-batch-test")
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 	implementation("org.springframework.boot:spring-boot-starter-json")
-	implementation("com.amazonaws:aws-java-sdk-s3:1.12.756")
+	implementation("software.amazon.awssdk:s3:2.28.26")
 	implementation("io.github.mojtabaj:c-webp:1.0.2")
 	implementation("org.apache.commons:commons-lang3:3.14.0")
 	implementation("org.springframework.boot:spring-boot-starter-web:3.3.2")
