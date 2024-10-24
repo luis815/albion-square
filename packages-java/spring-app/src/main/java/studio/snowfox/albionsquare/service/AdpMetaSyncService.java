@@ -16,10 +16,10 @@ import java.net.URL;
 import java.util.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.springframework.integration.support.locks.LockRegistry;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Transactional;
 import studio.snowfox.albionsquare.entity.*;
 import studio.snowfox.albionsquare.json.GitHubCommitMetaJson;
 import studio.snowfox.albionsquare.repository.AdpMetaLogRepository;
@@ -31,94 +31,104 @@ import studio.snowfox.albionsquare.repository.AlbionOnlineShopCategoryRepository
 @Service
 @RequiredArgsConstructor
 public class AdpMetaSyncService {
+    private final static String ADP_META_SYNC_PROCESS_ALL_LOCK_KEY = "ADP_META_SYNC_PROCESS_ALL_LOCK_KEY";
+
     private final AdpMetaLogRepository adpMetaLogRepository;
     private final AlbionOnlineShopCategoryRepository albionOnlineShopCategoryRepository;
     private final AlbionOnlineItemRepository albionOnlineItemRepository;
     private final AlbionOnlineLocalizationRepository albionOnlineLocalizationRepository;
+    private final LockRegistry lockRegistry;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void processAll() {
         this.handleProcessAll();
     }
 
     @Async
-    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void processAllAsync() {
         this.handleProcessAll();
     }
 
     private void handleProcessAll() {
-        GitHubCommitMetaJson latestGitHubCommitMetaJson = null;
-
         try {
-            latestGitHubCommitMetaJson = this.fetchLatestGitHubCommitMeta();
-        } catch (URISyntaxException | IOException e) {
-            throw new RuntimeException(e);
-        }
+            this.lockRegistry.executeLocked(ADP_META_SYNC_PROCESS_ALL_LOCK_KEY, () -> {
+                log.info(String.format("Executing locked with %s", ADP_META_SYNC_PROCESS_ALL_LOCK_KEY));
 
-        String sha = latestGitHubCommitMetaJson.getSha();
+                GitHubCommitMetaJson latestGitHubCommitMetaJson;
 
-        AdpMetaLog adpMetaLog = this.adpMetaLogRepository
-                .findBySha(sha)
-                .orElse(AdpMetaLog.builder()
-                        .sha(sha)
-                        .status(GenericStatus.PENDING)
-                        .build());
+                try {
+                    latestGitHubCommitMetaJson = this.fetchLatestGitHubCommitMeta();
+                } catch (URISyntaxException | IOException e) {
+                    throw new RuntimeException(e);
+                }
 
-        switch (adpMetaLog.getStatus()) {
-            case SUCCESS -> {
-                log.info("Latest ADP dumps already processed successfully");
-                return;
-            }
-            case FAILED -> {
-                log.info("Latest ADP dumps previously failed - re-trying");
-            }
-            case IN_PROGRESS -> {
-                log.info("Latest ADP dumps are already in progress");
-                return;
-            }
-            case PENDING -> {
-                log.info("New ADP dumps available - will proceed with processing");
+                String sha = latestGitHubCommitMetaJson.getSha();
+
+                AdpMetaLog adpMetaLog = this.adpMetaLogRepository
+                        .findBySha(sha)
+                        .orElse(AdpMetaLog.builder()
+                                .sha(sha)
+                                .status(GenericStatus.PENDING)
+                                .build());
+
+                switch (adpMetaLog.getStatus()) {
+                    case SUCCESS -> {
+                        log.info("Latest ADP dumps already processed successfully");
+                        return;
+                    }
+                    case FAILED -> {
+                        log.info("Latest ADP dumps previously failed - re-trying");
+                    }
+                    case IN_PROGRESS -> {
+                        log.info("Latest ADP dumps are already in progress");
+                        return;
+                    }
+                    case PENDING -> {
+                        log.info("New ADP dumps available - will proceed with processing");
+                        this.adpMetaLogRepository.save(adpMetaLog);
+                    }
+                    default -> {
+                        throw new RuntimeException("Status not supported");
+                    }
+                }
+
+                adpMetaLog.setStatus(GenericStatus.IN_PROGRESS);
                 this.adpMetaLogRepository.save(adpMetaLog);
-            }
-            default -> {
-                throw new RuntimeException("Status not supported");
-            }
-        }
 
-        adpMetaLog.setStatus(GenericStatus.IN_PROGRESS);
-        this.adpMetaLogRepository.save(adpMetaLog);
+                try {
+                    log.info("Processing items");
 
-        try {
-            log.info("Processing items");
+                    Items items = this.fetchItemsByCommitHash(sha);
 
-            Items items = this.fetchItemsByCommitHash(sha);
+                    StringWriter itemStringWriter = new StringWriter();
+                    JAXBContext.newInstance(Items.class).createMarshaller().marshal(items, itemStringWriter);
+                    adpMetaLog.setRawAdpItems(itemStringWriter.toString());
 
-            StringWriter itemStringWriter = new StringWriter();
-            JAXBContext.newInstance(Items.class).createMarshaller().marshal(items, itemStringWriter);
-            adpMetaLog.setRawAdpItems(itemStringWriter.toString());
+                    this.processItems(items, sha);
 
-            this.processItems(items, sha);
+                    log.info("Processing tmx");
 
-            log.info("Processing tmx");
+                    Tmx tmx = this.fetchTmxByCommitHash(sha);
 
-            Tmx tmx = this.fetchTmxByCommitHash(sha);
+                    StringWriter tmxStringWriter = new StringWriter();
+                    JAXBContext.newInstance(Tmx.class).createMarshaller().marshal(tmx, tmxStringWriter);
+                    adpMetaLog.setRawAdpTmx(tmxStringWriter.toString());
 
-            StringWriter tmxStringWriter = new StringWriter();
-            JAXBContext.newInstance(Tmx.class).createMarshaller().marshal(tmx, tmxStringWriter);
-            adpMetaLog.setRawAdpTmx(tmxStringWriter.toString());
+                    this.processTmx(tmx, sha);
+                } catch (MalformedURLException | URISyntaxException | JAXBException e) {
+                    adpMetaLog.setStatus(GenericStatus.FAILED);
+                    adpMetaLog.setDescription(ExceptionUtils.getStackTrace(e));
+                    this.adpMetaLogRepository.save(adpMetaLog);
+                    throw new RuntimeException(e);
+                }
 
-            this.processTmx(tmx, sha);
-        } catch (MalformedURLException | URISyntaxException | JAXBException e) {
-            adpMetaLog.setStatus(GenericStatus.FAILED);
-            this.adpMetaLogRepository.save(adpMetaLog);
+                adpMetaLog.setStatus(GenericStatus.SUCCESS);
+                this.adpMetaLogRepository.save(adpMetaLog);
+
+                log.info("Done");
+            });
+        } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        adpMetaLog.setStatus(GenericStatus.SUCCESS);
-        this.adpMetaLogRepository.save(adpMetaLog);
-
-        log.info("Done");
     }
 
     private GitHubCommitMetaJson fetchLatestGitHubCommitMeta() throws URISyntaxException, IOException {
