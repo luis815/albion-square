@@ -13,13 +13,13 @@ public class GameDataSyncService {
     private final AowAssetSyncService aowAssetSyncService;
 
     public void processAll() {
-        this.adpMetaSyncService.processAll();
+        this.adpMetaSyncService.load();
         this.aowAssetSyncService.processAll();
     }
 
     @Async
     public void processAllAsync() {
-        this.adpMetaSyncService.processAll();
+        this.adpMetaSyncService.load();
         this.aowAssetSyncService.processAll();
     }
 }

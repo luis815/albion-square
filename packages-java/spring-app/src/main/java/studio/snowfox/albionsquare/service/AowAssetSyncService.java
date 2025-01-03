@@ -15,8 +15,6 @@ import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
-import org.springframework.transaction.annotation.Transactional;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.*;
@@ -33,14 +31,16 @@ public class AowAssetSyncService {
     private final AlbionOnlineItemRepository albionOnlineItemRepository;
     private final S3Client s3Client;
 
-    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void processAll() {
-        this.processItemAssets();
+        this.handleProcessAll();
     }
 
     @Async
-    @Transactional(isolation = Isolation.SERIALIZABLE)
     public void processAllAsync() {
+        this.handleProcessAll();
+    }
+
+    private void handleProcessAll() {
         this.processItemAssets();
     }
 

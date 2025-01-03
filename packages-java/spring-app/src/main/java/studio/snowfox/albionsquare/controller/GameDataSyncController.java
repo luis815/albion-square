@@ -20,23 +20,23 @@ public class GameDataSyncController {
     private final AowAssetSyncService aowAssetSyncService;
     private final GameDataSyncService gameDataSyncService;
 
-    @PostMapping("/trigger-adp-meta-sync")
-    public ResponseEntity<String> triggerAdpMetaSync() {
-        log.info("Triggered ADP meta sync");
-        this.adpMetaSyncService.processAllAsync();
+    @PostMapping("/adp-meta-sync")
+    public ResponseEntity<String> adpMetaSync() {
+        log.info("Game data ADP meta sync");
+        this.adpMetaSyncService.loadAsync();
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
-    @PostMapping("/trigger-aow-asset-sync")
-    public ResponseEntity<String> triggerAowAssetSync() {
-        log.info("Triggered Albion Online Wiki asset sync");
+    @PostMapping("/aow-asset-sync")
+    public ResponseEntity<String> aowAssetSync() {
+        log.info("Game data Albion Online Wiki asset sync");
         this.aowAssetSyncService.processAllAsync();
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }
 
-    @PostMapping("/trigger-game-data-sync")
-    public ResponseEntity<String> triggerGameDataSync() {
-        log.info("Triggered game data sync");
+    @PostMapping("/game-data-sync")
+    public ResponseEntity<String> sync() {
+        log.info("Game data Sync");
         this.gameDataSyncService.processAllAsync();
         return new ResponseEntity<>("OK", HttpStatus.OK);
     }

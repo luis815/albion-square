@@ -14,7 +14,7 @@ public class GameDataSyncSchedule {
 
     @Scheduled(cron = "0 0 6 * * *")
     public void run() {
-        log.info("Triggered scheduled ADP meta sync");
+        log.info("Scheduled game data sync start");
         this.gameDataSyncService.processAll();
     }
 }

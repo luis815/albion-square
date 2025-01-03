@@ -1,4 +1,4 @@
-table "adp_meta_log" {
+table "adp_meta_sync_log" {
     schema = schema.albion_square
 
     column "id" {
