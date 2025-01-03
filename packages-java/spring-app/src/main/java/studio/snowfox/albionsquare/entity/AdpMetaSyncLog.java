@@ -12,11 +12,11 @@ import org.hibernate.type.SqlTypes;
 @Getter
 @Setter
 @Entity
-@Table(name = "adp_meta_log", schema = "albion_square")
+@Table(name = "adp_meta_sync_log", schema = "albion_square")
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AdpMetaLog {
+public class AdpMetaSyncLog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)

@@ -1,13 +1,13 @@
 package studio.snowfox.albionsquare.configuration;
 
-import com.amazonaws.auth.AWSStaticCredentialsProvider;
-import com.amazonaws.auth.BasicAWSCredentials;
-import com.amazonaws.client.builder.AwsClientBuilder;
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.AmazonS3ClientBuilder;
+import java.net.URI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
+import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.s3.S3Client;
 
 @Configuration
 public class AmazonS3Configuration {
@@ -24,11 +24,15 @@ public class AmazonS3Configuration {
     private String awsS3SecretKey;
 
     @Bean
-    public AmazonS3 amazonS3() {
-        return AmazonS3ClientBuilder.standard()
-                .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(awsS3Endpoint, awsS3Region))
-                .withCredentials(
-                        new AWSStaticCredentialsProvider(new BasicAWSCredentials(awsS3AccessKey, awsS3SecretKey)))
+    public S3Client s3Client() {
+        return S3Client.builder()
+                .region(Region.of(this.awsS3Region))
+                .endpointOverride(URI.create(this.awsS3Endpoint))
+                .forcePathStyle(true)
+                .credentialsProvider(StaticCredentialsProvider.create(AwsBasicCredentials.builder()
+                        .accessKeyId(this.awsS3AccessKey)
+                        .secretAccessKey(this.awsS3SecretKey)
+                        .build()))
                 .build();
     }
 }
