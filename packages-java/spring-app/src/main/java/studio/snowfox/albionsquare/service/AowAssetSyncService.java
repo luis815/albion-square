@@ -1,10 +1,7 @@
 package studio.snowfox.albionsquare.service;
 
-import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.*;
 import io.github.mojtabaJ.cwebp.WebpConverter;
 import java.awt.image.BufferedImage;
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.net.URI;
@@ -16,7 +13,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.*;
 import studio.snowfox.albionsquare.entity.AlbionOnlineItem;
 import studio.snowfox.albionsquare.repository.AlbionOnlineItemRepository;
 
@@ -28,22 +29,35 @@ public class AowAssetSyncService {
     private String bucket;
 
     private final AlbionOnlineItemRepository albionOnlineItemRepository;
-    private final AmazonS3 amazonS3;
+    private final S3Client s3Client;
+
+    public void processAll() {
+        this.handleProcessAll();
+    }
+
+    @Async
+    public void processAllAsync() {
+        this.handleProcessAll();
+    }
+
+    private void handleProcessAll() {
+        this.processItemAssets();
+    }
 
     private void processItemAssets() {
-        List<AlbionOnlineItem> albionOnlineItems = this.albionOnlineItemRepository.findAll();
+        List<AlbionOnlineItem> albionOnlineItems = this.albionOnlineItemRepository.findAllByAssetIsNullOrAssetIsFalse();
 
-        ListObjectsV2Request listObjectsV2Request = new ListObjectsV2Request();
+        ListObjectsV2Request listObjectsV2Request = ListObjectsV2Request.builder()
+                .bucket(bucket)
+                .prefix("albion-online/item")
+                .build();
 
-        listObjectsV2Request.setBucketName("albion-square");
-        listObjectsV2Request.setPrefix("albion-online-item/");
+        ListObjectsV2Response listObjectsV2Response = this.s3Client.listObjectsV2(listObjectsV2Request);
 
-        ListObjectsV2Result listObjectsV2Result = this.amazonS3.listObjectsV2(listObjectsV2Request);
+        List<S3Object> s3ObjectSummaryList = listObjectsV2Response.contents();
 
-        List<S3ObjectSummary> s3ObjectSummaryList = listObjectsV2Result.getObjectSummaries();
-
-        Map<String, S3ObjectSummary> s3ObjectSummaryMap = s3ObjectSummaryList.stream()
-                .collect(Collectors.toMap(S3ObjectSummary::getKey, s3ObjectSummary -> s3ObjectSummary));
+        Map<String, S3Object> s3ObjectSummaryMap =
+                s3ObjectSummaryList.stream().collect(Collectors.toMap(S3Object::key, s3Object -> s3Object));
 
         for (AlbionOnlineItem albionOnlineItem : albionOnlineItems) {
             List<Short> enchantmentLevels = new ArrayList<>();
@@ -88,26 +102,27 @@ public class AowAssetSyncService {
                         continue;
                     }
 
-                    ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(
-                            WebpConverter.imageByteToWebpByte(ArrayUtils.toPrimitive(rawItemAsset.get())));
+                    byte[] itemAssetWebpByteArray =
+                            WebpConverter.imageByteToWebpByte(ArrayUtils.toPrimitive(rawItemAsset.get()));
 
-                    ObjectMetadata objectMetadata = new ObjectMetadata();
-
-                    objectMetadata.setContentType("image/webp");
-                    objectMetadata.setCacheControl("public, max-age=15552000");
-                    objectMetadata.setContentLength(byteArrayInputStream.available());
-
-                    PutObjectRequest putObjectRequest = new PutObjectRequest(
-                            bucket,
-                            String.format(
+                    PutObjectRequest putObjectRequest = PutObjectRequest.builder()
+                            .bucket(bucket)
+                            .key(String.format(
                                     "albion-online/item/%s/%s/%s/asset.webp",
-                                    albionOnlineItem.getUniqueName(), enchantmentLevel, quality),
-                            byteArrayInputStream,
-                            objectMetadata);
+                                    albionOnlineItem.getUniqueName(), enchantmentLevel, quality))
+                            .metadata(Map.of(
+                                    "Content-Type", "image/webp",
+                                    "Cache-Control", "public max-age=15552000",
+                                    "Content-Length", String.valueOf(itemAssetWebpByteArray.length)))
+                            .acl(ObjectCannedACL.PUBLIC_READ)
+                            .build();
 
-                    putObjectRequest.withCannedAcl(CannedAccessControlList.PublicRead);
+                    RequestBody requestBody = RequestBody.fromBytes(itemAssetWebpByteArray);
 
-                    this.amazonS3.putObject(putObjectRequest);
+                    this.s3Client.putObject(putObjectRequest, requestBody);
+
+                    albionOnlineItem.setAsset(true);
+                    this.albionOnlineItemRepository.save(albionOnlineItem);
 
                     try {
                         Thread.sleep(1000);

@@ -5,4 +5,6 @@ import studio.snowfox.albionsquare.entity.AlbionOnlineShopCategory;
 import studio.snowfox.albionsquare.entity.AlbionOnlineShopCategoryId;
 
 public interface AlbionOnlineShopCategoryRepository
-        extends JpaRepository<AlbionOnlineShopCategory, AlbionOnlineShopCategoryId> {}
+        extends JpaRepository<AlbionOnlineShopCategory, AlbionOnlineShopCategoryId> {
+    void deleteAllByShaNot(String shaNot);
+}

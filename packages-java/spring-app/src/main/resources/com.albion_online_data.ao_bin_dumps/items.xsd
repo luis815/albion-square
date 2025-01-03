@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" >
   <xs:element name="items">
     <xs:complexType>
       <xs:sequence>
@@ -19,6 +19,7 @@
           <xs:element ref="mountskin"/>
           <xs:element ref="simpleitem"/>
           <xs:element ref="transformationweapon"/>
+          <xs:element ref="trashitem"/>
           <xs:element ref="weapon"/>
         </xs:choice>
         <xs:element maxOccurs="unbounded" ref="siegebanner"/>
@@ -239,7 +240,9 @@
       <xs:attribute name="logconsumption" type="xs:boolean"/>
       <xs:attribute name="maxstacksize" type="xs:integer"/>
       <xs:attribute name="namelocatag"/>
+      <xs:attribute name="playeractivitytomefame" type="xs:boolean"/>
       <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" type="xs:boolean"/>
@@ -253,7 +256,7 @@
       <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
       <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
       <xs:attribute name="unlockedtouse" type="xs:boolean"/>
-      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="consumableitem">
@@ -272,7 +275,7 @@
       <xs:attribute name="fishingminigamesetting" type="xs:NCName"/>
       <xs:attribute name="foodcategory" type="xs:NCName"/>
       <xs:attribute name="itemvalue" type="xs:integer"/>
-      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
       <xs:attribute name="nutrition" type="xs:integer"/>
       <xs:attribute name="resourcetype" type="xs:NCName"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
@@ -287,7 +290,7 @@
       <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
       <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
       <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
-      <xs:attribute name="weight" type="xs:decimal"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="crystalleagueitem">
@@ -304,6 +307,7 @@
       <xs:attribute name="namelocatag" use="required"/>
       <xs:attribute name="resourcetype" use="required" type="xs:NCName"/>
       <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" type="xs:boolean"/>
@@ -340,8 +344,10 @@
       <xs:attribute name="combatspecachievement" type="xs:NCName"/>
       <xs:attribute name="craftingcategory" type="xs:NCName"/>
       <xs:attribute name="crowdcontrolresistance" use="required" type="xs:integer"/>
+      <xs:attribute name="decayitem"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
       <xs:attribute name="descriptionlocatag"/>
-      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
       <xs:attribute name="durability" use="required" type="xs:integer"/>
       <xs:attribute name="durabilityloss_attack" use="required" type="xs:decimal"/>
       <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
@@ -378,6 +384,7 @@
       <xs:attribute name="physicalattackdamagebonus" use="required" type="xs:decimal"/>
       <xs:attribute name="physicalspelldamagebonus" use="required" type="xs:decimal"/>
       <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
       <xs:attribute name="scalemodifier" type="xs:decimal"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
@@ -402,12 +409,12 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
         <xs:choice minOccurs="0">
           <xs:element ref="cheatprovider"/>
           <xs:element ref="container"/>
+          <xs:element ref="repairkit"/>
         </xs:choice>
-        <xs:element minOccurs="0" ref="AudioInfo"/>
-        <xs:element minOccurs="0" ref="repairkit"/>
       </xs:sequence>
       <xs:attribute name="accessrightspreset" type="xs:NCName"/>
       <xs:attribute name="customizewithguildlogo" type="xs:boolean"/>
@@ -431,6 +438,7 @@
       <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
       <xs:attribute name="residencyslots" type="xs:integer"/>
       <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" type="xs:boolean"/>
@@ -638,20 +646,32 @@
   </xs:element>
   <xs:element name="mountskin">
     <xs:complexType>
-      <xs:choice maxOccurs="unbounded">
-        <xs:element ref="AssetVfxPreset"/>
-        <xs:element ref="AudioInfo"/>
-        <xs:element ref="FootStepVfxPreset"/>
-        <xs:element ref="SocketPreset"/>
-      </xs:choice>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="FootStepVfxPreset"/>
+          <xs:element ref="SocketPreset"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="Highlight"/>
+      </xs:sequence>
       <xs:attribute name="despawneffect" use="required"/>
-      <xs:attribute name="despawneffectscaling" use="required" type="xs:integer"/>
+      <xs:attribute name="despawneffectscaling" use="required" type="xs:decimal"/>
       <xs:attribute name="nametagoffset" type="xs:integer"/>
       <xs:attribute name="prefabname" use="required" type="xs:NCName"/>
       <xs:attribute name="prefabscaling" use="required" type="xs:decimal"/>
       <xs:attribute name="uisprite" type="xs:NCName"/>
       <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
       <xs:attribute name="vfxAddonKeyword" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Highlight">
+    <xs:complexType>
+      <xs:attribute name="color" use="required"/>
+      <xs:attribute name="includeSelf" use="required" type="xs:boolean"/>
+      <xs:attribute name="intensityFactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="range" use="required" type="xs:decimal"/>
+      <xs:attribute name="socket" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="simpleitem">
@@ -662,6 +682,9 @@
       </xs:sequence>
       <xs:attribute name="canbestoredinbattlevault" type="xs:boolean"/>
       <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="decayitem"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
+      <xs:attribute name="decaystattext"/>
       <xs:attribute name="descriptionlocatag"/>
       <xs:attribute name="descvariable0"/>
       <xs:attribute name="descvariable1"/>
@@ -680,6 +703,7 @@
       <xs:attribute name="nutrition" type="xs:integer"/>
       <xs:attribute name="resourcetype" type="xs:NCName"/>
       <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" type="xs:boolean"/>
@@ -692,6 +716,7 @@
       <xs:attribute name="uispriteoverlay2" type="xs:NCName"/>
       <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
       <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="validforactivitychest" type="xs:boolean"/>
       <xs:attribute name="weight" type="xs:decimal"/>
     </xs:complexType>
   </xs:element>
@@ -729,7 +754,7 @@
       <xs:attribute name="combatspecachievement" type="xs:NCName"/>
       <xs:attribute name="craftingcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="descriptionlocatag" use="required"/>
-      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
       <xs:attribute name="durability" use="required" type="xs:integer"/>
       <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
       <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
@@ -767,12 +792,25 @@
       <xs:attribute name="weight" use="required" type="xs:decimal"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="trashitem">
+    <xs:complexType>
+      <xs:attribute name="estimatedmarketvalueoverride" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="weapon">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="canharvest"/>
         <xs:element minOccurs="0" ref="attackvariations"/>
-        <xs:element minOccurs="0" maxOccurs="unbounded" ref="projectile"/>
+        <xs:choice>
+          <xs:element ref="canharvest"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="projectile"/>
+        </xs:choice>
         <xs:choice maxOccurs="unbounded">
           <xs:element ref="AssetVfxPreset"/>
           <xs:element ref="AudioInfo"/>
@@ -789,6 +827,7 @@
       <xs:attribute name="attackdamage" type="xs:integer"/>
       <xs:attribute name="attackdamagetimefactor" type="xs:decimal"/>
       <xs:attribute name="attackendanimgaptime" type="xs:decimal"/>
+      <xs:attribute name="attackendanimscalemode" type="xs:NCName"/>
       <xs:attribute name="attackrange" type="xs:decimal"/>
       <xs:attribute name="attackspeed" type="xs:decimal"/>
       <xs:attribute name="attackspeedbonus" type="xs:integer"/>
@@ -803,7 +842,7 @@
       <xs:attribute name="craftingcategory" type="xs:NCName"/>
       <xs:attribute name="crowdcontrolresistance" type="xs:integer"/>
       <xs:attribute name="descriptionlocatag"/>
-      <xs:attribute name="destinycraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
       <xs:attribute name="durability" use="required" type="xs:integer"/>
       <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
       <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
@@ -842,6 +881,8 @@
       <xs:attribute name="physicalspelldamagebonus" type="xs:integer"/>
       <xs:attribute name="repairbuildingdamage" type="xs:integer"/>
       <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="scaleattackendanimmode" type="xs:boolean"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" type="xs:boolean"/>
@@ -889,17 +930,16 @@
   </xs:element>
   <xs:element name="killtrophy">
     <xs:complexType>
-      <xs:sequence>
-        <xs:element ref="craftingrequirements"/>
-      </xs:sequence>
       <xs:attribute name="descriptionlocatag" use="required"/>
       <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilitylossperdayfactor" use="required" type="xs:integer"/>
+      <xs:attribute name="expiretimedays" use="required" type="xs:integer"/>
       <xs:attribute name="hidefromplayeroncontext" use="required" type="xs:NCName"/>
       <xs:attribute name="placeableindoors" use="required" type="xs:boolean"/>
       <xs:attribute name="placeableindungeons" use="required" type="xs:boolean"/>
       <xs:attribute name="placeableinexpeditions" use="required" type="xs:boolean"/>
-      <xs:attribute name="placeableonlyonislands" use="required" type="xs:boolean"/>
       <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
       <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
       <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
       <xs:attribute name="showinmarketplace" use="required" type="xs:boolean"/>
@@ -913,12 +953,14 @@
   <xs:element name="craftingrequirements">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" ref="vanityunlocked"/>
         <xs:choice minOccurs="0" maxOccurs="unbounded">
           <xs:element ref="currency"/>
           <xs:element ref="playerfactionstanding"/>
         </xs:choice>
-        <xs:element minOccurs="0" ref="mistcitystanding"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="mistcitystanding"/>
+          <xs:element ref="vanityunlocked"/>
+        </xs:choice>
         <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftresource"/>
       </xs:sequence>
       <xs:attribute name="amountcrafted" type="xs:integer"/>
@@ -933,12 +975,6 @@
       <xs:attribute name="silver" type="xs:integer"/>
       <xs:attribute name="swaptransaction" type="xs:boolean"/>
       <xs:attribute name="time" type="xs:decimal"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="vanityunlocked">
-    <xs:complexType>
-      <xs:attribute name="name" use="required" type="xs:NCName"/>
-      <xs:attribute name="type" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="currency">
@@ -958,6 +994,12 @@
       <xs:attribute name="minstanding" use="required" type="xs:integer"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="vanityunlocked">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="craftresource">
     <xs:complexType>
       <xs:attribute name="count" use="required" type="xs:integer"/>
@@ -972,11 +1014,17 @@
       <xs:attribute name="name" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
+  <xs:element name="AssetVfxPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="craftingspelllist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element maxOccurs="unbounded" ref="craftspell"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftspell"/>
       </xs:sequence>
+      <xs:attribute name="reference" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="craftspell">
@@ -989,11 +1037,6 @@
   <xs:element name="SocketPreset">
     <xs:complexType>
       <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="AssetVfxPreset">
-    <xs:complexType>
-      <xs:attribute name="name" use="required" type="xs:NCName"/>
     </xs:complexType>
   </xs:element>
   <xs:element name="enchantments">
