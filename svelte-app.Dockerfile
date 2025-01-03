@@ -12,6 +12,8 @@ USER node
 WORKDIR /home/node
 COPY --chown=node:node . .
 
+ENV CI=true
+
 RUN pnpm install
 RUN pnpm run --filter @as/svelte-app build
 
