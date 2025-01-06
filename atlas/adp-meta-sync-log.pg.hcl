@@ -24,6 +24,10 @@ table "adp_meta_sync_log" {
         null = true
         type = xml
     }
+    column "raw_adp_spells" {
+        null = true
+        type = xml
+    }
     column "description" {
         null = true
         type = text

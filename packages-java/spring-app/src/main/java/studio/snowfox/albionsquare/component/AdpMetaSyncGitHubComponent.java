@@ -1,6 +1,7 @@
 package studio.snowfox.albionsquare.component;
 
 import com.albion_online_data.ao_bin_dumps.Items;
+import com.albion_online_data.ao_bin_dumps.Spells;
 import com.albion_online_data.ao_bin_dumps.Tmx;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.xml.bind.JAXBContext;
@@ -27,6 +28,9 @@ public class AdpMetaSyncGitHubComponent {
     private static final String ADP_BIN_DUMPS_COMMIT_TMX_URI_TEMPLATE =
             "https://raw.githubusercontent.com/ao-data/ao-bin-dumps/%s/localization.xml";
 
+    private static final String ADP_BIN_DUMPS_COMMIT_SPELLS_URI_TEMPLATE =
+            "https://raw.githubusercontent.com/ao-data/ao-bin-dumps/%s/spells.xml";
+
     public GitHubCommitMetaJson fetchLatestGitHubCommitMeta() throws URISyntaxException, IOException {
         ObjectMapper objectMapper = new ObjectMapper();
         URL adpLatestCommitUrl = new URI(ADP_BIN_DUMPS_LATEST_COMMIT_URI).toURL();
@@ -45,5 +49,12 @@ public class AdpMetaSyncGitHubComponent {
         Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
         return (Tmx)
                 unmarshaller.unmarshal(new URI(String.format(ADP_BIN_DUMPS_COMMIT_TMX_URI_TEMPLATE, hash)).toURL());
+    }
+
+    public Spells fetchSpellsByCommitHash(String hash) throws JAXBException, URISyntaxException, MalformedURLException {
+        JAXBContext jaxbContext = JAXBContext.newInstance(Spells.class);
+        Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
+        return (Spells)
+                unmarshaller.unmarshal(new URI(String.format(ADP_BIN_DUMPS_COMMIT_SPELLS_URI_TEMPLATE, hash)).toURL());
     }
 }

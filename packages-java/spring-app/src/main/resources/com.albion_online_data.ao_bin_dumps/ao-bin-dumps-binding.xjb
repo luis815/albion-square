@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jaxb:bindings
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:jaxb="https://jakarta.ee/xml/ns/jaxb"
+        xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+        version="3.0">
+
+    <jaxb:bindings schemaLocation="ao-bin-dumps.xsd" node="/xs:schema">
+
+        <jaxb:bindings node="//xs:element[@name='beamvfx']">
+            <jaxb:bindings node=".//xs:complexType">
+                <jaxb:bindings node=".//xs:attribute[@name='target']">
+                    <jaxb:property name="beamvfxtarget"/>
+                </jaxb:bindings>
+            </jaxb:bindings>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="//xs:element[@name='linkbeamvfx']">
+            <jaxb:bindings node=".//xs:complexType">
+                <jaxb:bindings node=".//xs:attribute[@name='target']">
+                    <jaxb:property name="linkbeamvfxtarget"/>
+                </jaxb:bindings>
+            </jaxb:bindings>
+        </jaxb:bindings>
+
+        <jaxb:bindings node="//xs:element[@name='weightbonusovertime']">
+            <jaxb:bindings node=".//xs:complexType">
+                <jaxb:bindings node=".//xs:attribute[@name='item']">
+                    <jaxb:property name="weightbonusovertimeitem"/>
+                </jaxb:bindings>
+            </jaxb:bindings>
+        </jaxb:bindings>
+
+    </jaxb:bindings>
+
+</jaxb:bindings>

@@ -72,7 +72,7 @@ public class AdpMetaSyncItemComponent {
         objectList.addAll(items.getTrackingitem());
         objectList.addAll(items.getFarmableitem());
         objectList.addAll(items.getSiegebanner());
-        objectList.addAll(items.getConsumablefrominventoryitemOrConsumableitemOrCrystalleagueitem());
+        objectList.addAll(items.getWeaponOrConsumablefrominventoryitemOrConsumableitem());
 
         this.adpMetaSyncItemObjectRepository.saveAll(objectList);
 
