@@ -1,6 +1,7 @@
 package studio.snowfox.albionsquare.component;
 
 import com.albion_online_data.ao_bin_dumps.Items;
+import com.albion_online_data.ao_bin_dumps.Spells;
 import com.albion_online_data.ao_bin_dumps.Tmx;
 import jakarta.xml.bind.JAXBContext;
 import java.io.IOException;
@@ -23,9 +24,10 @@ public class AdpMetaSyncComponent {
     private final AdpMetaSyncLogRepository adpMetaSyncLogRepository;
     private final AdpMetaSyncItemComponent adpMetaSyncItemComponent;
     private final AdpMetaSyncTmxComponent adpMetaSyncTmxComponent;
+    private final AdpMetaSyncSpellComponent adpMetaSyncSpellComponent;
 
     public void load() {
-        log.info("AdpMetaSyncComponent all start");
+        log.info("Start");
 
         GitHubCommitMetaJson latestGitHubCommitMetaJson;
         try {
@@ -68,7 +70,7 @@ public class AdpMetaSyncComponent {
         this.adpMetaSyncLogRepository.save(adpMetaSyncLog);
 
         try {
-            log.info("Processing items");
+            log.info("Loading items");
 
             Items items = this.adpMetaSyncGitHubComponent.fetchItemsByCommitHash(sha);
 
@@ -78,7 +80,7 @@ public class AdpMetaSyncComponent {
 
             this.adpMetaSyncItemComponent.load(items, sha);
 
-            log.info("Processing tmx");
+            log.info("Loading tmx");
 
             Tmx tmx = this.adpMetaSyncGitHubComponent.fetchTmxByCommitHash(sha);
 
@@ -87,6 +89,16 @@ public class AdpMetaSyncComponent {
             adpMetaSyncLog.setRawAdpTmx(tmxStringWriter.toString());
 
             this.adpMetaSyncTmxComponent.load(tmx, sha);
+
+            log.info("Loading spells");
+
+            Spells spells = this.adpMetaSyncGitHubComponent.fetchSpellsByCommitHash(sha);
+
+            StringWriter spellStringWriter = new StringWriter();
+            JAXBContext.newInstance(Spells.class).createMarshaller().marshal(spells, spellStringWriter);
+            adpMetaSyncLog.setRawAdpSpells(spellStringWriter.toString());
+
+            this.adpMetaSyncSpellComponent.load(spells, sha);
         } catch (Exception e) {
             adpMetaSyncLog.setStatus(GenericStatus.FAILED);
             adpMetaSyncLog.setDescription(ExceptionUtils.getStackTrace(e));
@@ -97,6 +109,6 @@ public class AdpMetaSyncComponent {
         adpMetaSyncLog.setStatus(GenericStatus.SUCCESS);
         this.adpMetaSyncLogRepository.save(adpMetaSyncLog);
 
-        log.info("AdpMetaSyncComponent all end");
+        log.info("End");
     }
 }

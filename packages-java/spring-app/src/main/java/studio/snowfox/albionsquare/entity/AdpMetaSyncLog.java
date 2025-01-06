@@ -38,6 +38,10 @@ public class AdpMetaSyncLog {
     @JdbcTypeCode(SqlTypes.SQLXML)
     private String rawAdpTmx;
 
+    @Column(name = "raw_adp_spells")
+    @JdbcTypeCode(SqlTypes.SQLXML)
+    private String rawAdpSpells;
+
     @Column(name = "description", length = Integer.MAX_VALUE)
     private String description;
 

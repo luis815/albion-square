@@ -1,0 +1,3696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="ao-bin-dumps-xml.xsd"/>
+  <xs:element name="items">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="shopcategories"/>
+        <xs:element ref="hideoutitem"/>
+        <xs:element maxOccurs="unbounded" ref="trackingitem"/>
+        <xs:element maxOccurs="unbounded" ref="farmableitem"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="weapon"/>
+          <xs:element ref="consumablefrominventoryitem"/>
+          <xs:element ref="consumableitem"/>
+          <xs:element ref="crystalleagueitem"/>
+          <xs:element ref="equipmentitem"/>
+          <xs:element ref="furnitureitem"/>
+          <xs:element ref="journalitem"/>
+          <xs:element ref="labourercontract"/>
+          <xs:element ref="mount"/>
+          <xs:element ref="mountskin"/>
+          <xs:element ref="simpleitem"/>
+          <xs:element ref="transformationweapon"/>
+          <xs:element ref="trashitem"/>
+        </xs:choice>
+        <xs:element maxOccurs="unbounded" ref="siegebanner"/>
+        <xs:element ref="killtrophy"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopcategories">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="shopcategory"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopcategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="shopsubcategory"/>
+      </xs:sequence>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shopsubcategory">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="hideoutitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="itemvalue" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistance" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistanceintunnel" use="required" type="xs:integer"/>
+      <xs:attribute name="placementduration" use="required" type="xs:integer"/>
+      <xs:attribute name="primetimedurationminutes" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trackingitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="craftingcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_findtrack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_inspecttrack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="findtrackspell" use="required" type="xs:NCName"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="trackingfamebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="trackingtimereduction" use="required" type="xs:decimal"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uisprite" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="farmableitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="craftingrequirements"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="harvest"/>
+        <xs:element minOccurs="0" ref="grownitem"/>
+        <xs:element minOccurs="0" ref="consumption"/>
+        <xs:element minOccurs="0" ref="products"/>
+      </xs:sequence>
+      <xs:attribute name="activefarmactiondurationseconds" type="xs:integer"/>
+      <xs:attribute name="activefarmbonus" type="xs:decimal"/>
+      <xs:attribute name="activefarmcyclelengthseconds" type="xs:integer"/>
+      <xs:attribute name="activefarmfocuscost" type="xs:integer"/>
+      <xs:attribute name="activefarmmaxcycles" type="xs:integer"/>
+      <xs:attribute name="animationid" use="required" type="xs:NCName"/>
+      <xs:attribute name="destroyable" use="required" type="xs:boolean"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="kind" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="pickupable" use="required" type="xs:boolean"/>
+      <xs:attribute name="placefame" use="required" type="xs:integer"/>
+      <xs:attribute name="prefabname" type="xs:NCName"/>
+      <xs:attribute name="prefabscale" type="xs:decimal"/>
+      <xs:attribute name="resourcevalue" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tile" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoplace" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="harvest">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="seed"/>
+      </xs:sequence>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="growtime" use="required" type="xs:integer"/>
+      <xs:attribute name="lootchance" use="required" type="xs:integer"/>
+      <xs:attribute name="lootlist" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="seed">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="chance" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="grownitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="offspring"/>
+      </xs:sequence>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="growtime" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="offspring">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="chance" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumption">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="food"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="food">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="acceptedfood"/>
+      </xs:sequence>
+      <xs:attribute name="hungryoverheadicon" use="required"/>
+      <xs:attribute name="lossbeforehungry" type="xs:integer"/>
+      <xs:attribute name="nutritionmax" use="required" type="xs:integer"/>
+      <xs:attribute name="secondspernutrition" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="acceptedfood">
+    <xs:complexType>
+      <xs:attribute name="favorite" type="xs:NCName"/>
+      <xs:attribute name="favoritebonus" type="xs:integer"/>
+      <xs:attribute name="foodcategory" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="products">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="product"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="product">
+    <xs:complexType>
+      <xs:attribute name="actionname" use="required"/>
+      <xs:attribute name="fame" use="required" type="xs:integer"/>
+      <xs:attribute name="lootchance" use="required" type="xs:integer"/>
+      <xs:attribute name="lootlist" use="required" type="xs:NCName"/>
+      <xs:attribute name="productiontime" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumablefrominventoryitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="allowfullstackusage" type="xs:boolean"/>
+      <xs:attribute name="consumespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="decayitem" type="xs:NCName"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="estimatedmarketvalueoverride" type="xs:integer"/>
+      <xs:attribute name="hidedecayoverlay" type="xs:boolean"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="logconsumption" type="xs:boolean"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="playeractivitytomefame" type="xs:boolean"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay2" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtouse" type="xs:boolean"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="consumableitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="consumespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="famevalue" type="xs:integer"/>
+      <xs:attribute name="fishingfame" type="xs:integer"/>
+      <xs:attribute name="fishingminigamesetting" type="xs:NCName"/>
+      <xs:attribute name="foodcategory" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="resourcetype" type="xs:NCName"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="crystalleagueitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbestoredinbattlevault" use="required" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="descvariable0" use="required"/>
+      <xs:attribute name="enchantmentlevel" use="required" type="xs:integer"/>
+      <xs:attribute name="itemvalue" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="namelocatag" use="required"/>
+      <xs:attribute name="resourcetype" use="required" type="xs:NCName"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" use="required" type="xs:boolean"/>
+      <xs:attribute name="uisprite" use="required"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="equipmentitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="SocketPreset"/>
+          <xs:element ref="craftingrequirements"/>
+          <xs:element ref="craftingspelllist"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="attackspeedbonus" type="xs:decimal"/>
+      <xs:attribute name="beardstate" type="xs:NCName"/>
+      <xs:attribute name="bonusccdurationvsmobs" use="required" type="xs:decimal"/>
+      <xs:attribute name="bonusccdurationvsplayers" use="required" type="xs:decimal"/>
+      <xs:attribute name="bonusdefensevsmobs" type="xs:decimal"/>
+      <xs:attribute name="bonusdefensevsplayers" type="xs:decimal"/>
+      <xs:attribute name="canbeovercharged" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="crowdcontrolresistance" use="required" type="xs:integer"/>
+      <xs:attribute name="decayitem"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:decimal"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="energycostreduction" type="xs:decimal"/>
+      <xs:attribute name="energymax" use="required" type="xs:integer"/>
+      <xs:attribute name="energyregenerationbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="facestate" type="xs:NCName"/>
+      <xs:attribute name="famevalue" type="xs:integer"/>
+      <xs:attribute name="healbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="healmodifier" type="xs:decimal"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="magiccasttimereduction" type="xs:decimal"/>
+      <xs:attribute name="magiccooldownreduction" use="required" type="xs:decimal"/>
+      <xs:attribute name="magicresistance" use="required" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="mainhandanimationtype" type="xs:NCName"/>
+      <xs:attribute name="masterymodifier" type="xs:decimal"/>
+      <xs:attribute name="maxload" type="xs:integer"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="movespeed" type="xs:integer"/>
+      <xs:attribute name="movespeedbonus" type="xs:integer"/>
+      <xs:attribute name="offhandanimationtype" type="xs:NCName"/>
+      <xs:attribute name="omitmesh" type="xs:boolean"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalarmor" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="physicalspelldamagebonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="scalemodifier" type="xs:decimal"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="skincolormodifier" type="xs:integer"/>
+      <xs:attribute name="skincount" type="xs:integer"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="threatbonus" use="required" type="xs:decimal"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="furnitureitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="cheatprovider"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="container"/>
+          <xs:element ref="repairkit"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="accessrightspreset" type="xs:NCName"/>
+      <xs:attribute name="customizewithguildlogo" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="durability" type="xs:decimal"/>
+      <xs:attribute name="durabilitylossperdayfactor" type="xs:decimal"/>
+      <xs:attribute name="durabilitylossperusefactor" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="labourerfurnituretype" type="xs:NCName"/>
+      <xs:attribute name="labourerhappiness" type="xs:integer"/>
+      <xs:attribute name="labourersaffected" type="xs:NCName"/>
+      <xs:attribute name="labourersperfurnitureitem" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="placeableindoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableindungeons" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableinexpeditions" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableonlyonislands" type="xs:boolean"/>
+      <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="residencyslots" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tile"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cheatprovider">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="container">
+    <xs:complexType>
+      <xs:attribute name="capacity" use="required" type="xs:integer"/>
+      <xs:attribute name="weightlimit" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="repairkit">
+    <xs:complexType>
+      <xs:attribute name="maxtier" use="required" type="xs:integer"/>
+      <xs:attribute name="repaircostfactor" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="journalitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+        <xs:element ref="famefillingmissions"/>
+        <xs:element ref="lootlist"/>
+      </xs:sequence>
+      <xs:attribute name="baselootamount" use="required" type="xs:decimal"/>
+      <xs:attribute name="fasttravelfactor" type="xs:integer"/>
+      <xs:attribute name="maxfame" use="required" type="xs:integer"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="famefillingmissions">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="craftitemfame"/>
+        <xs:element ref="fameearned"/>
+        <xs:element ref="fishingfame"/>
+        <xs:element ref="gatherfame"/>
+        <xs:element ref="killmobfame"/>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftitemfame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="validitem"/>
+      </xs:sequence>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fameearned">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fishingfame">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="gatherfame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="validitem"/>
+      </xs:sequence>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="killmobfame">
+    <xs:complexType>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="lootlist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="loot"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="loot">
+    <xs:complexType>
+      <xs:attribute name="itemamount" type="xs:integer"/>
+      <xs:attribute name="itemenchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="itemname" type="xs:NCName"/>
+      <xs:attribute name="labourerfame" use="required" type="xs:integer"/>
+      <xs:attribute name="silveramount" type="xs:integer"/>
+      <xs:attribute name="weight" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="labourercontract">
+    <xs:complexType>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mount">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="FootStepVfxPreset"/>
+          <xs:element ref="SocketPreset"/>
+          <xs:element ref="craftingspelllist"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="mountspelllist"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="canuseinfactionwarfare" type="xs:boolean"/>
+      <xs:attribute name="canuseingvg" type="xs:boolean"/>
+      <xs:attribute name="canusetownportal" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="despawneffect" use="required"/>
+      <xs:attribute name="despawneffectscaling" use="required" type="xs:integer"/>
+      <xs:attribute name="dismountbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="dismounttime" use="required" type="xs:integer"/>
+      <xs:attribute name="durability" use="required" type="xs:decimal"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_mounting" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack_mounted" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell_mounted" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="forceddismountbuff" type="xs:NCName"/>
+      <xs:attribute name="forceddismountcooldown" use="required" type="xs:integer"/>
+      <xs:attribute name="forceddismountspellcooldown" use="required" type="xs:decimal"/>
+      <xs:attribute name="fulldismountcooldown" use="required" type="xs:integer"/>
+      <xs:attribute name="halfmountedbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="halfmountprefaboverride"/>
+      <xs:attribute name="halfmountrange" use="required" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hostiledismountbuff" type="xs:NCName"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itemvalue" type="xs:integer"/>
+      <xs:attribute name="longhostiledismountbuff" type="xs:NCName"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mountcategory" type="xs:NCName"/>
+      <xs:attribute name="mountedbuff" use="required" type="xs:NCName"/>
+      <xs:attribute name="mounthitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="mounthitpointsregeneration" use="required" type="xs:decimal"/>
+      <xs:attribute name="mounttime" use="required" type="xs:integer"/>
+      <xs:attribute name="nametagoffset" type="xs:decimal"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="prefabname" use="required"/>
+      <xs:attribute name="prefabscaling" use="required" type="xs:decimal"/>
+      <xs:attribute name="remountdistance" use="required" type="xs:integer"/>
+      <xs:attribute name="remounttime" use="required" type="xs:decimal"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uicraftsoundfinish" use="required" type="xs:NCName"/>
+      <xs:attribute name="uicraftsoundstart" use="required"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="vfxAddonKeyword" use="required" type="xs:NCName"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountspelllist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="mountspell"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountspell">
+    <xs:complexType>
+      <xs:attribute name="spellslot" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mountskin">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="AssetVfxPreset"/>
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="FootStepVfxPreset"/>
+          <xs:element ref="SocketPreset"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="Highlight"/>
+      </xs:sequence>
+      <xs:attribute name="despawneffect" use="required"/>
+      <xs:attribute name="despawneffectscaling" use="required" type="xs:decimal"/>
+      <xs:attribute name="nametagoffset" type="xs:integer"/>
+      <xs:attribute name="prefabname" use="required" type="xs:NCName"/>
+      <xs:attribute name="prefabscaling" use="required" type="xs:decimal"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="vfxAddonKeyword" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Highlight">
+    <xs:complexType>
+      <xs:attribute name="color" use="required"/>
+      <xs:attribute name="includeSelf" use="required" type="xs:boolean"/>
+      <xs:attribute name="intensityFactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="range" use="required" type="xs:decimal"/>
+      <xs:attribute name="socket" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="simpleitem">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="replaceondeath"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbestoredinbattlevault" type="xs:boolean"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="decayitem"/>
+      <xs:attribute name="decayondatetime" type="xs:NCName"/>
+      <xs:attribute name="decaystattext"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="descvariable0"/>
+      <xs:attribute name="descvariable1"/>
+      <xs:attribute name="dontgivefameoncraft" type="xs:boolean"/>
+      <xs:attribute name="droponpvpknockdown" type="xs:boolean"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="famevalue" type="xs:decimal"/>
+      <xs:attribute name="fasttravelfactor" type="xs:integer"/>
+      <xs:attribute name="fishingfame" type="xs:integer"/>
+      <xs:attribute name="fishingminigamesetting" type="xs:NCName"/>
+      <xs:attribute name="foodcategory" type="xs:NCName"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="itemvalue" type="xs:decimal"/>
+      <xs:attribute name="maxstacksize" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="resourcetype" type="xs:NCName"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="salvagevalueoverride" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay1" type="xs:NCName"/>
+      <xs:attribute name="uispriteoverlay2" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="validforactivitychest" type="xs:boolean"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="replaceondeath">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="replacementitem"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="replacementitem">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transformationweapon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="attackvariations"/>
+        <xs:element ref="projectile"/>
+        <xs:element ref="SocketPreset"/>
+        <xs:element ref="craftingrequirements"/>
+        <xs:element ref="craftingspelllist"/>
+        <xs:element ref="AudioInfo"/>
+        <xs:element minOccurs="0" ref="enchantments"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" use="required" type="xs:integer"/>
+      <xs:attribute name="activespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="attackdamage" use="required" type="xs:integer"/>
+      <xs:attribute name="attackrange" use="required" type="xs:integer"/>
+      <xs:attribute name="attackspeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" use="required" type="xs:integer"/>
+      <xs:attribute name="focusfireprotectionpenetration" use="required" type="xs:integer"/>
+      <xs:attribute name="fxbonename" use="required" type="xs:NCName"/>
+      <xs:attribute name="fxboneoffset" use="required"/>
+      <xs:attribute name="healmodifier" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsmax" use="required" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" use="required" type="xs:integer"/>
+      <xs:attribute name="itempower" use="required" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" use="required" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="mainhandanimationtype" use="required" type="xs:NCName"/>
+      <xs:attribute name="masterymodifier" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxqualitylevel" use="required" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="passivespellslots" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="physicalspelldamagebonus" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="transformation" use="required" type="xs:NCName"/>
+      <xs:attribute name="twohanded" use="required" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required"/>
+      <xs:attribute name="uisprite" use="required" type="xs:NMTOKEN"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trashitem">
+    <xs:complexType>
+      <xs:attribute name="estimatedmarketvalueoverride" use="required" type="xs:integer"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="siegebanner">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="craftingrequirements"/>
+      </xs:sequence>
+      <xs:attribute name="canbeovercharged" use="required" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="maxstacksize" use="required" type="xs:integer"/>
+      <xs:attribute name="referencespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="tradable" use="required" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish" use="required"/>
+      <xs:attribute name="uicraftsoundstart" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="killtrophy">
+    <xs:complexType>
+      <xs:attribute name="descriptionlocatag" use="required"/>
+      <xs:attribute name="durability" use="required" type="xs:integer"/>
+      <xs:attribute name="durabilitylossperdayfactor" use="required" type="xs:integer"/>
+      <xs:attribute name="expiretimedays" use="required" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" use="required" type="xs:NCName"/>
+      <xs:attribute name="placeableindoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableindungeons" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableinexpeditions" use="required" type="xs:boolean"/>
+      <xs:attribute name="placeableoutdoors" use="required" type="xs:boolean"/>
+      <xs:attribute name="salvageable" use="required" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" use="required" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" use="required" type="xs:boolean"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="uisprite" use="required"/>
+      <xs:attribute name="uniquename" use="required"/>
+      <xs:attribute name="unlockedtocraft" use="required" type="xs:boolean"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spells">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="colortag"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="activespell"/>
+          <xs:element ref="passivespell"/>
+          <xs:element ref="togglespell"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="colortag">
+    <xs:complexType>
+      <xs:attribute name="colorformat" use="required"/>
+      <xs:attribute name="tag" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="activespell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="addvanityconsumablecharges"/>
+          <xs:element ref="awardcraftingfocus"/>
+          <xs:element ref="cannotaggro"/>
+          <xs:element ref="escapedungeon"/>
+          <xs:element ref="repairequipment"/>
+          <xs:element ref="resurrect"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="townportal"/>
+        <xs:choice>
+          <xs:element ref="spellindicationarea"/>
+          <xs:element ref="adddestinyboardpvefame"/>
+          <xs:element ref="coupdegrace"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="unlockavatar"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="dropcarriableobject"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="generateloot"/>
+          <xs:element ref="smartclusterqueuejoin"/>
+          <xs:element ref="terminatetogglespells"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="clamphitpoints"/>
+          <xs:element ref="portalrestriction"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="adddestinyboardgatheringfame"/>
+          <xs:element ref="awardsilver"/>
+          <xs:element ref="changeflagging"/>
+          <xs:element ref="leaveisland"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="cannotattackplayers"/>
+        <xs:element minOccurs="0" ref="cannotlootplayers"/>
+        <xs:element minOccurs="0" ref="storage"/>
+        <xs:element minOccurs="0" ref="playertracking"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="activaterandomdungeon"/>
+        <xs:choice>
+          <xs:element ref="awardlearningpoints"/>
+          <xs:element ref="gainenergyondamage"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="mobfamebycategoryovertime"/>
+        </xs:choice>
+        <xs:sequence minOccurs="0">
+          <xs:element ref="mobdamagemodifier"/>
+          <xs:element ref="mobhealthmodifier"/>
+        </xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="awardpremiumdays"/>
+          <xs:element ref="useobject"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="applyeffectoneventactive"/>
+          <xs:element ref="applyspell"/>
+          <xs:element ref="attackprojectileoverride"/>
+          <xs:element ref="attributechangeovertime"/>
+          <xs:element ref="aura"/>
+          <xs:element ref="beamvfx"/>
+          <xs:element ref="buffovertime"/>
+          <xs:element ref="cceffectimmunity"/>
+          <xs:element ref="directattributechange"/>
+          <xs:element ref="dummy"/>
+          <xs:element ref="fofIndicator"/>
+          <xs:element ref="interruptcast"/>
+          <xs:element ref="invincibility"/>
+          <xs:element ref="invisibility"/>
+          <xs:element ref="knockback"/>
+          <xs:element ref="locareferences"/>
+          <xs:element ref="nop"/>
+          <xs:element ref="nothittable"/>
+          <xs:element ref="nothittablebyothers"/>
+          <xs:element ref="notselectable"/>
+          <xs:element ref="projectile"/>
+          <xs:element ref="projectileoverride"/>
+          <xs:element ref="pulsingspell"/>
+          <xs:element ref="reflectdamageactive"/>
+          <xs:element ref="removeactiveeffects"/>
+          <xs:element ref="removeactivespell"/>
+          <xs:element ref="root"/>
+          <xs:element ref="spawnmob"/>
+          <xs:element ref="spelleffectarea"/>
+          <xs:element ref="spelleffectfx"/>
+          <xs:element ref="spellimmunity"/>
+          <xs:element ref="spellvfx"/>
+          <xs:element ref="spellvfxoverride"/>
+          <xs:element ref="stun"/>
+          <xs:element ref="teleport"/>
+          <xs:element ref="tintfx"/>
+          <xs:element ref="adddestinyboardfishingfame"/>
+          <xs:element ref="cancelmultispell"/>
+          <xs:element ref="cannotattack"/>
+          <xs:element ref="castspellafterdistancemoved"/>
+          <xs:element ref="castspellaftermoving"/>
+          <xs:element ref="chainspell"/>
+          <xs:element ref="changeaggro"/>
+          <xs:element ref="damageshield"/>
+          <xs:element ref="dash"/>
+          <xs:element ref="dismount"/>
+          <xs:element ref="drag"/>
+          <xs:element ref="endtransformation"/>
+          <xs:element ref="enterobjecttimeoverride"/>
+          <xs:element ref="forcedmovement"/>
+          <xs:element ref="healonhit"/>
+          <xs:element ref="link"/>
+          <xs:element ref="maketargettopthreat"/>
+          <xs:element ref="matchhighestthreatlevel"/>
+          <xs:element ref="movefreely"/>
+          <xs:element ref="multispell"/>
+          <xs:element ref="notinterruptible"/>
+          <xs:element ref="pull"/>
+          <xs:element ref="removeeffectoneventactive"/>
+          <xs:element ref="removefromthreatlist"/>
+          <xs:element ref="removespelleffectareasaffectingtarget"/>
+          <xs:element ref="removespelleffectareasinarea"/>
+          <xs:element ref="removespelleffectareasoftarget"/>
+          <xs:element ref="removestoredtargets"/>
+          <xs:element ref="resetcooldowns"/>
+          <xs:element ref="resourcegatheringbuffovertime"/>
+          <xs:element ref="setcooldowns"/>
+          <xs:element ref="settargetforcasterownedmobs"/>
+          <xs:element ref="silence"/>
+          <xs:element ref="silverspawn"/>
+          <xs:element ref="storetargets"/>
+          <xs:element ref="targetsinarea"/>
+          <xs:element ref="transformation"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="weightbonusovertime"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="applyrandomspell"/>
+          <xs:element ref="channelingspell"/>
+          <xs:element ref="findtrack"/>
+          <xs:element ref="scalefx"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:element ref="cannotenterhideout"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="cannotuseexit"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+        <xs:choice>
+          <xs:element ref="screenshakeinfo"/>
+          <xs:element ref="cannotuseobject"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="unlockvanityunlock"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="ForcedMovementCastAnimMode" type="xs:NCName"/>
+      <xs:attribute name="adjustgroundtargettorange" type="xs:boolean"/>
+      <xs:attribute name="allowcancel" type="xs:boolean"/>
+      <xs:attribute name="allowedinknockdown" type="xs:boolean"/>
+      <xs:attribute name="allowfakeslot" type="xs:boolean"/>
+      <xs:attribute name="allowfakeslotwhilemounted" type="xs:boolean"/>
+      <xs:attribute name="animIgnoreHitDelay" type="xs:boolean"/>
+      <xs:attribute name="animIgnoreMovement" type="xs:boolean"/>
+      <xs:attribute name="animmode" type="xs:NCName"/>
+      <xs:attribute name="animstyle" type="xs:NCName"/>
+      <xs:attribute name="assessment" type="xs:NCName"/>
+      <xs:attribute name="bindtoitem" type="xs:boolean"/>
+      <xs:attribute name="boundtofaction" type="xs:NCName"/>
+      <xs:attribute name="buffpriority" type="xs:integer"/>
+      <xs:attribute name="cancelautoattackaftercasting" type="xs:boolean"/>
+      <xs:attribute name="castablewhensilenced" type="xs:boolean"/>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="castanimation" type="xs:NMTOKEN"/>
+      <xs:attribute name="casterindependentcharges" type="xs:boolean"/>
+      <xs:attribute name="castingtime" use="required" type="xs:decimal"/>
+      <xs:attribute name="castrange" use="required" type="xs:decimal"/>
+      <xs:attribute name="castrangemin" type="xs:decimal"/>
+      <xs:attribute name="castrangetolerance" type="xs:integer"/>
+      <xs:attribute name="castupperbodyblendtime" type="xs:decimal"/>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+      <xs:attribute name="damagecancelscasting" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="displaytextonexpirylocatag"/>
+      <xs:attribute name="displaytextonremovallocatag"/>
+      <xs:attribute name="disruptionfactor" type="xs:decimal"/>
+      <xs:attribute name="energyusage" use="required" type="xs:decimal"/>
+      <xs:attribute name="energyusageisrelative" type="xs:boolean"/>
+      <xs:attribute name="freezeanimation" type="xs:boolean"/>
+      <xs:attribute name="hideMainhandDuringAnim" type="xs:boolean"/>
+      <xs:attribute name="hideOffhandDuringAnim" type="xs:boolean"/>
+      <xs:attribute name="hidecastbar" type="xs:boolean"/>
+      <xs:attribute name="hidedangericon" type="xs:boolean"/>
+      <xs:attribute name="hidemesh" type="xs:boolean"/>
+      <xs:attribute name="hidespelleffecticon" type="xs:boolean"/>
+      <xs:attribute name="hidespelleffecticonforothers" type="xs:boolean"/>
+      <xs:attribute name="hitdelay" type="xs:decimal"/>
+      <xs:attribute name="ignorecasttimereductionbonus" type="xs:boolean"/>
+      <xs:attribute name="interruptiblebyspell" type="xs:boolean"/>
+      <xs:attribute name="itempowerrecastdelaymodifier" type="xs:decimal"/>
+      <xs:attribute name="keepmovingaftercast" type="xs:boolean"/>
+      <xs:attribute name="keeponretreat" type="xs:boolean"/>
+      <xs:attribute name="maxcharges" type="xs:integer"/>
+      <xs:attribute name="maxstack" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="neutraleffect" type="xs:boolean"/>
+      <xs:attribute name="recastdelay" use="required" type="xs:decimal"/>
+      <xs:attribute name="recastdelayafterinterrupt" type="xs:decimal"/>
+      <xs:attribute name="removeoncasterdeath" type="xs:boolean"/>
+      <xs:attribute name="removeoncasterreset" type="xs:boolean"/>
+      <xs:attribute name="removewhencastergone" type="xs:boolean"/>
+      <xs:attribute name="requireslineofsight" type="xs:boolean"/>
+      <xs:attribute name="resettargetbeforecast" type="xs:boolean"/>
+      <xs:attribute name="rotatetowardstarget" type="xs:boolean"/>
+      <xs:attribute name="showgizmo" type="xs:boolean"/>
+      <xs:attribute name="showrange" type="xs:boolean"/>
+      <xs:attribute name="silvercosts" type="xs:integer"/>
+      <xs:attribute name="spellchargesrequired" type="xs:integer"/>
+      <xs:attribute name="spellchargesspell" type="xs:NCName"/>
+      <xs:attribute name="spelleffectanimation" type="xs:NCName"/>
+      <xs:attribute name="spelleffectlocatag"/>
+      <xs:attribute name="spellschargesconsumed" type="xs:integer"/>
+      <xs:attribute name="spellschargesresetdurationonremoval" type="xs:boolean"/>
+      <xs:attribute name="spelltags" type="xs:NCName"/>
+      <xs:attribute name="stackinggroup"/>
+      <xs:attribute name="stackinggrouppriority" type="xs:integer"/>
+      <xs:attribute name="stackingrule" type="xs:NCName"/>
+      <xs:attribute name="standtime" type="xs:decimal"/>
+      <xs:attribute name="standtimeallowedspellslots" type="xs:NCName"/>
+      <xs:attribute name="startcharges" type="xs:integer"/>
+      <xs:attribute name="statblock"/>
+      <xs:attribute name="storedtargettag" type="xs:NCName"/>
+      <xs:attribute name="systemspell" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="triggerautoattackcooldown" type="xs:boolean"/>
+      <xs:attribute name="uiatlas" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uititlesprite" type="xs:NCName"/>
+      <xs:attribute name="uitype" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtoequip" type="xs:boolean"/>
+      <xs:attribute name="usableincombat" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="addvanityconsumablecharges">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="awardcraftingfocus">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotaggro">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="escapedungeon">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="repairequipment">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resurrect">
+    <xs:complexType>
+      <xs:attribute name="removespellonresurrectanswer" use="required"/>
+      <xs:attribute name="restoration" use="required" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="townportal">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="adddestinyboardpvefame">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="coupdegrace">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="unlockavatar">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockname" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlocktype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dropcarriableobject">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="generateloot">
+    <xs:complexType>
+      <xs:attribute name="lootlist" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="smartclusterqueuejoin">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="terminatetogglespells">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="portalrestriction">
+    <xs:complexType>
+      <xs:attribute name="persistsafterdeath" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" use="required" type="xs:boolean"/>
+      <xs:attribute name="portaltype" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adddestinyboardgatheringfame">
+    <xs:complexType>
+      <xs:attribute name="achievementid" use="required" type="xs:NCName"/>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="awardsilver">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="changeflagging">
+    <xs:complexType>
+      <xs:attribute name="tostatus" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="leaveisland">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="cannotattackplayers">
+    <xs:complexType>
+      <xs:attribute name="ignorecrowdcontrolresistance" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotlootplayers">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="storage">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="playertracking">
+    <xs:complexType>
+      <xs:attribute name="clusteractivitytype" use="required" type="xs:NCName"/>
+      <xs:attribute name="persistsafterknockdown" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="activaterandomdungeon">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="not"/>
+        <xs:element ref="or"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfClusterArcheType"/>
+      </xs:choice>
+      <xs:attribute name="difficulty" use="required" type="xs:integer"/>
+      <xs:attribute name="dungeon" use="required" type="xs:NCName"/>
+      <xs:attribute name="exittype" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxdistance" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistance" use="required" type="xs:integer"/>
+      <xs:attribute name="persistsafterknockdown" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="awardlearningpoints">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="gainenergyondamage">
+    <xs:complexType>
+      <xs:attribute name="energyperhit" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mobfamebycategoryovertime">
+    <xs:complexType>
+      <xs:attribute name="bindtoclusterarchetype" type="xs:NCName"/>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mobdamagemodifier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="IfTargetMobFaction"/>
+        <xs:element ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mobhealthmodifier">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="IfTargetMobFaction"/>
+        <xs:element ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="awardpremiumdays">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="useobject">
+    <xs:complexType>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="adddestinyboardfishingfame">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cancelmultispell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="slot" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotattack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="or"/>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="expireafterdistance" type="xs:decimal"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="castspellafterdistancemoved">
+    <xs:complexType>
+      <xs:attribute name="castafterdistancemoved" use="required" type="xs:integer"/>
+      <xs:attribute name="castspellintervalnotenoughmovement" use="required" type="xs:decimal"/>
+      <xs:attribute name="firstcastonapply" use="required" type="xs:boolean"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="castspellaftermoving">
+    <xs:complexType>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="cooldownafterdamage" type="xs:decimal"/>
+      <xs:attribute name="damageresetstimetocast" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="minmovespeed" type="xs:decimal"/>
+      <xs:attribute name="movetimetocast" use="required" type="xs:decimal"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="standtimetoendspell" use="required" type="xs:decimal"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="chainspell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="projectile"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfOwnLoadPercent"/>
+          <xs:element ref="beamvfx"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="chaintarget" use="required" type="xs:NCName"/>
+      <xs:attribute name="destructionDelay" type="xs:decimal"/>
+      <xs:attribute name="interval" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxcount" use="required" type="xs:integer"/>
+      <xs:attribute name="maxdistance" use="required" type="xs:integer"/>
+      <xs:attribute name="onlyuniquetargets" use="required" type="xs:boolean"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="changeaggro">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="or"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellActive"/>
+      </xs:choice>
+      <xs:attribute name="aggroradius" type="xs:integer"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="faction" type="xs:NCName"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+      <xs:attribute name="who" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="damageshield">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="breaksoncc" type="xs:NCName"/>
+      <xs:attribute name="damageabsorbed" use="required" type="xs:decimal"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="effecttype" type="xs:NCName"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="usehealingmodifiers" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dash">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="and"/>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+      </xs:sequence>
+      <xs:attribute name="animID" type="xs:NCName"/>
+      <xs:attribute name="collisioneffect" type="xs:NCName"/>
+      <xs:attribute name="collisioneffecttarget" type="xs:NCName"/>
+      <xs:attribute name="disableOffhand" type="xs:boolean"/>
+      <xs:attribute name="endeffect" type="xs:NCName"/>
+      <xs:attribute name="endeffecttarget" type="xs:NCName"/>
+      <xs:attribute name="endpositionoffset" type="xs:decimal"/>
+      <xs:attribute name="instantAnimTransition" type="xs:boolean"/>
+      <xs:attribute name="maxdistance" type="xs:integer"/>
+      <xs:attribute name="mindistance" type="xs:integer"/>
+      <xs:attribute name="movespeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="ruleset" type="xs:NCName"/>
+      <xs:attribute name="scaleAnim" type="xs:boolean"/>
+      <xs:attribute name="standtime" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dismount">
+    <xs:complexType>
+      <xs:attribute name="cooldown" use="required" type="xs:integer"/>
+      <xs:attribute name="mountcooldown" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="drag">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+      </xs:sequence>
+      <xs:attribute name="animID" type="xs:NCName"/>
+      <xs:attribute name="collisioneffect" type="xs:NCName"/>
+      <xs:attribute name="collisioneffecttarget" type="xs:NCName"/>
+      <xs:attribute name="dragpositionoffset" use="required" type="xs:decimal"/>
+      <xs:attribute name="dragtarget" use="required" type="xs:NCName"/>
+      <xs:attribute name="effectarearadius" use="required" type="xs:integer"/>
+      <xs:attribute name="maxeffectareatargets" use="required" type="xs:integer"/>
+      <xs:attribute name="mindistance" type="xs:integer"/>
+      <xs:attribute name="movespeed" use="required" type="xs:integer"/>
+      <xs:attribute name="ruleset" type="xs:NCName"/>
+      <xs:attribute name="scaleAnim" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="endtransformation">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enterobjecttimeoverride">
+    <xs:complexType>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="enterdurationsec" use="required" type="xs:integer"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="forcedmovement">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="endeffect" type="xs:NCName"/>
+      <xs:attribute name="endeffecttarget" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="initialdirection" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxdirectionchangetime" type="xs:decimal"/>
+      <xs:attribute name="maxwaittime" type="xs:decimal"/>
+      <xs:attribute name="mindirectionchangetime" type="xs:decimal"/>
+      <xs:attribute name="minwaittime" type="xs:integer"/>
+      <xs:attribute name="movespeed" type="xs:decimal"/>
+      <xs:attribute name="movespeedpreset" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="healonhit">
+    <xs:complexType>
+      <xs:attribute name="attribute" type="xs:NCName"/>
+      <xs:attribute name="chance" type="xs:integer"/>
+      <xs:attribute name="damagetype" type="xs:NCName"/>
+      <xs:attribute name="maxhealpercentageperinterval" type="xs:decimal"/>
+      <xs:attribute name="percentage" use="required" type="xs:decimal"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="updateinterval" type="xs:decimal"/>
+      <xs:attribute name="usehealingmodifiers" use="required" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="link">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="linkbeamvfx"/>
+      </xs:sequence>
+      <xs:attribute name="ally_damagetakenfactor" type="xs:decimal"/>
+      <xs:attribute name="ally_healingfactor" type="xs:decimal"/>
+      <xs:attribute name="ally_sentdamage" type="xs:decimal"/>
+      <xs:attribute name="ally_senthealing" type="xs:decimal"/>
+      <xs:attribute name="connectiontime" use="required" type="xs:integer"/>
+      <xs:attribute name="enemy_damagetakenfactor" type="xs:decimal"/>
+      <xs:attribute name="enemy_healingfactor" type="xs:integer"/>
+      <xs:attribute name="enemy_sentdamage" type="xs:decimal"/>
+      <xs:attribute name="enemy_senthealing" type="xs:integer"/>
+      <xs:attribute name="maxlinkedtargetsdistance" use="required" type="xs:integer"/>
+      <xs:attribute name="passivelink" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="unconnectedtimeout" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="linkbeamvfx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="source"/>
+        <xs:element ref="target"/>
+      </xs:sequence>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="fadeouttime" type="xs:integer"/>
+      <xs:attribute name="linktarget" use="required" type="xs:NCName"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="maketargettopthreat">
+    <xs:complexType>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="factor" type="xs:decimal"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="matchhighestthreatlevel">
+    <xs:complexType>
+      <xs:attribute name="factor" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="movefreely">
+    <xs:complexType>
+      <xs:attribute name="persistsafterdeath" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="multispell">
+    <xs:complexType>
+      <xs:attribute name="autoactivatenextmultispell" type="xs:boolean"/>
+      <xs:attribute name="castableonlyonce" use="required" type="xs:boolean"/>
+      <xs:attribute name="extendtimewindowaftersuccessfulcastbyseconds" use="required" type="xs:decimal"/>
+      <xs:attribute name="slot" use="required" type="xs:NCName"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoutcooldown" use="required" type="xs:decimal"/>
+      <xs:attribute name="timewindow" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notinterruptible">
+    <xs:complexType>
+      <xs:attribute name="disruptionallowed" type="xs:boolean"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pull">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfOwnLoadPercent"/>
+          <xs:element ref="IfTargetRange"/>
+          <xs:element ref="and"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="animID" type="xs:NCName"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="enddistance" type="xs:decimal"/>
+      <xs:attribute name="endeffect" type="xs:NCName"/>
+      <xs:attribute name="endeffecttarget" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="movespeed" use="required" type="xs:integer"/>
+      <xs:attribute name="pullwhere" use="required" type="xs:NCName"/>
+      <xs:attribute name="scaleAnim" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeeffectoneventactive">
+    <xs:complexType>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="event" use="required"/>
+      <xs:attribute name="eventtriggereffectname" use="required" type="xs:NCName"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="removespelleffectnames" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removefromthreatlist">
+    <xs:complexType>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removespelleffectareasaffectingtarget">
+    <xs:complexType>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="maxareasremoved" type="xs:integer"/>
+      <xs:attribute name="ownedby" use="required" type="xs:NCName"/>
+      <xs:attribute name="spell" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removespelleffectareasinarea">
+    <xs:complexType>
+      <xs:attribute name="areatags" type="xs:NCName"/>
+      <xs:attribute name="doexactareacollisioncheck" type="xs:boolean"/>
+      <xs:attribute name="ownedby" use="required" type="xs:NCName"/>
+      <xs:attribute name="removeallcastrelatedareas" type="xs:boolean"/>
+      <xs:attribute name="removeradius" use="required" type="xs:integer"/>
+      <xs:attribute name="spell" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removespelleffectareasoftarget">
+    <xs:complexType>
+      <xs:attribute name="spell" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removestoredtargets">
+    <xs:complexType>
+      <xs:attribute name="numberoftargets" use="required" type="xs:integer"/>
+      <xs:attribute name="tag" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resetcooldowns">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfConsumeCharges"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="amount" use="required" type="xs:decimal"/>
+      <xs:attribute name="relative" use="required" type="xs:boolean"/>
+      <xs:attribute name="slot" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resourcegatheringbuffovertime">
+    <xs:complexType>
+      <xs:attribute name="bufftype" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxtier" use="required" type="xs:integer"/>
+      <xs:attribute name="mintier" use="required" type="xs:integer"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="resourcetype" use="required"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="setcooldowns">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="relative" use="required" type="xs:boolean"/>
+      <xs:attribute name="slot" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="settargetforcasterownedmobs">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="silence">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfTargetType"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountdurationbonusfactor" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="silverspawn">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="effectradius" use="required" type="xs:decimal"/>
+      <xs:attribute name="minsilverperpile" use="required" type="xs:integer"/>
+      <xs:attribute name="numberofpiles" use="required" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="storetargets">
+    <xs:complexType>
+      <xs:attribute name="maxtargets" use="required" type="xs:integer"/>
+      <xs:attribute name="tag" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targettype" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="targetsinarea">
+    <xs:complexType>
+      <xs:attribute name="applyspellwhennotargetsinarea"/>
+      <xs:attribute name="applyspellwhentargetsinarea" use="required" type="xs:NCName"/>
+      <xs:attribute name="areatargettype" use="required" type="xs:NCName"/>
+      <xs:attribute name="radius" use="required" type="xs:integer"/>
+      <xs:attribute name="radiusleavethreshold" use="required" type="xs:integer"/>
+      <xs:attribute name="rechecktargetsinintervals" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="transformation">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfTargetItemTypeEquipped"/>
+        <xs:element ref="not"/>
+      </xs:choice>
+      <xs:attribute name="cceffect" type="xs:boolean"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="weightbonusovertime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="item"/>
+      </xs:sequence>
+      <xs:attribute name="item" use="required" type="xs:NCName"/>
+      <xs:attribute name="persistsafterdeath" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="item">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="applyrandomspell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="applyspell"/>
+      </xs:sequence>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="channelingspell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="knockback"/>
+          <xs:element ref="teleport"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="spawnmob"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="spellindicationarea"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="nop"/>
+          <xs:element ref="pulsingspell"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="applyeffectoneventactive"/>
+          <xs:element ref="applyspell"/>
+          <xs:element ref="aura"/>
+          <xs:element ref="beamvfx"/>
+          <xs:element ref="buffovertime"/>
+          <xs:element ref="cceffectimmunity"/>
+          <xs:element ref="directattributechange"/>
+          <xs:element ref="dummy"/>
+          <xs:element ref="interruptcast"/>
+          <xs:element ref="invincibility"/>
+          <xs:element ref="invisibility"/>
+          <xs:element ref="nothittable"/>
+          <xs:element ref="nothittablebyothers"/>
+          <xs:element ref="notselectable"/>
+          <xs:element ref="projectile"/>
+          <xs:element ref="projectileoverride"/>
+          <xs:element ref="reflectdamageactive"/>
+          <xs:element ref="removeactivespell"/>
+          <xs:element ref="root"/>
+          <xs:element ref="spelleffectarea"/>
+          <xs:element ref="spelleffectfx"/>
+          <xs:element ref="spellimmunity"/>
+          <xs:element ref="spellvfx"/>
+          <xs:element ref="spellvfxoverride"/>
+          <xs:element ref="stun"/>
+          <xs:element ref="tintfx"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="AudioInfo"/>
+          <xs:element ref="screenshakeinfo"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="allowcancel" type="xs:boolean"/>
+      <xs:attribute name="allowmovement" type="xs:boolean"/>
+      <xs:attribute name="cancelpreventsendeffects" type="xs:boolean"/>
+      <xs:attribute name="castDirectionDuringChannel" type="xs:NCName"/>
+      <xs:attribute name="channelinganimation" type="xs:NCName"/>
+      <xs:attribute name="damagecancelscasting" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="disruptionfactor" type="xs:decimal"/>
+      <xs:attribute name="effectcount" use="required" type="xs:integer"/>
+      <xs:attribute name="effectinterval" use="required" type="xs:decimal"/>
+      <xs:attribute name="endeffect"/>
+      <xs:attribute name="endeffecttarget" type="xs:NCName"/>
+      <xs:attribute name="energyusage" use="required" type="xs:decimal"/>
+      <xs:attribute name="energyusageisrelative" type="xs:boolean"/>
+      <xs:attribute name="freezeanimation" type="xs:boolean"/>
+      <xs:attribute name="hidecastbar" type="xs:boolean"/>
+      <xs:attribute name="hidehealthbar" type="xs:boolean"/>
+      <xs:attribute name="hidemesh" type="xs:boolean"/>
+      <xs:attribute name="hitdelay" type="xs:decimal"/>
+      <xs:attribute name="ignoreMovedChannelAnim" type="xs:boolean"/>
+      <xs:attribute name="initialeffectinterval" use="required" type="xs:decimal"/>
+      <xs:attribute name="interruptpreventsendeffects" type="xs:boolean"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="overrideRotation" type="xs:boolean"/>
+      <xs:attribute name="rotatealwayswithfullspeed" type="xs:boolean"/>
+      <xs:attribute name="rotatespeed" type="xs:integer"/>
+      <xs:attribute name="rotatetowardstarget" type="xs:boolean"/>
+      <xs:attribute name="rotatewithcursor" type="xs:boolean"/>
+      <xs:attribute name="spelleffectlocatag"/>
+      <xs:attribute name="standtime" type="xs:decimal"/>
+      <xs:attribute name="standtimeallowedspellslots"/>
+      <xs:attribute name="upperbodychannelinganim" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="findtrack">
+    <xs:complexType>
+      <xs:attribute name="radius" use="required" type="xs:integer"/>
+      <xs:attribute name="sharewithgroup" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="scalefx">
+    <xs:complexType>
+      <xs:attribute name="scalevalue" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotenterhideout">
+    <xs:complexType>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotuseexit">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+      </xs:sequence>
+      <xs:attribute name="onlyinclustertype" type="xs:NCName"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cannotuseobject">
+    <xs:complexType>
+      <xs:attribute name="persistsafterclusterchange" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" use="required" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" use="required" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="unlockvanityunlock">
+    <xs:complexType>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockname" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlocktype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="passivespell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="locareferences"/>
+          <xs:element ref="pulsingspellpassive"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="dummypassive"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="weightbonus"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="applyeffectoneventpassive"/>
+        <xs:choice>
+          <xs:element ref="healonhitpassive"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="resourcegatheringbuff"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="buff"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="spelleffectlocatag"/>
+      <xs:attribute name="statblock"/>
+      <xs:attribute name="uisprite" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtoequip" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pulsingspellpassive">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="initialinterval" use="required" type="xs:decimal"/>
+      <xs:attribute name="interval" use="required" type="xs:decimal"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dummypassive">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="weightbonus">
+    <xs:complexType>
+      <xs:attribute name="item" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="applyeffectoneventpassive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="IfOwnHealthPercentage"/>
+        <xs:choice>
+          <xs:element ref="and"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="applyeffecttarget" use="required" type="xs:NCName"/>
+      <xs:attribute name="castfinishedslot" type="xs:NCName"/>
+      <xs:attribute name="chance" use="required" type="xs:integer"/>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="healonhitpassive">
+    <xs:complexType>
+      <xs:attribute name="attribute" type="xs:NCName"/>
+      <xs:attribute name="chance" use="required" type="xs:integer"/>
+      <xs:attribute name="damagetype" use="required" type="xs:NCName"/>
+      <xs:attribute name="maxhealpercentageperinterval" type="xs:decimal"/>
+      <xs:attribute name="percentage" use="required" type="xs:decimal"/>
+      <xs:attribute name="updateinterval" type="xs:decimal"/>
+      <xs:attribute name="usehealingmodifiers" use="required" type="xs:boolean"/>
+      <xs:attribute name="variablefactor" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="resourcegatheringbuff">
+    <xs:complexType>
+      <xs:attribute name="bufftype" use="required" type="xs:NCName"/>
+      <xs:attribute name="resourcetype" use="required"/>
+      <xs:attribute name="tier" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="buff">
+    <xs:complexType>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+      <xs:attribute name="variablefactor" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="togglespell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="applyeffectoneventactive"/>
+          <xs:element ref="locareferences"/>
+          <xs:sequence>
+            <xs:element ref="cceffectimmunity"/>
+            <xs:element ref="clamphitpoints"/>
+          </xs:sequence>
+          <xs:sequence>
+            <xs:element ref="removeactiveeffects"/>
+            <xs:element ref="spellimmunity"/>
+          </xs:sequence>
+        </xs:choice>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="applyspell"/>
+          <xs:element ref="attackprojectileoverride"/>
+          <xs:element ref="attributechangeovertime"/>
+          <xs:element ref="aura"/>
+          <xs:element ref="buffovertime"/>
+          <xs:element ref="pulsingspell"/>
+          <xs:element ref="spelleffectfx"/>
+          <xs:element ref="spellvfx"/>
+          <xs:element ref="tintfx"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+      </xs:sequence>
+      <xs:attribute name="animmode" type="xs:NCName"/>
+      <xs:attribute name="assessment" use="required" type="xs:NCName"/>
+      <xs:attribute name="bindtoitem" type="xs:boolean"/>
+      <xs:attribute name="boundtofaction" type="xs:NCName"/>
+      <xs:attribute name="buffpriority" type="xs:integer"/>
+      <xs:attribute name="cancelautoattackaftercasting" type="xs:boolean"/>
+      <xs:attribute name="castanimation" type="xs:NCName"/>
+      <xs:attribute name="castingtime" use="required" type="xs:decimal"/>
+      <xs:attribute name="castrange" use="required" type="xs:integer"/>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="disruptionfactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="energyusage" use="required" type="xs:decimal"/>
+      <xs:attribute name="energyusageisrelative" type="xs:boolean"/>
+      <xs:attribute name="hidespelleffecticon" type="xs:boolean"/>
+      <xs:attribute name="hitdelay" use="required" type="xs:decimal"/>
+      <xs:attribute name="itempowerrecastdelaymodifier" type="xs:decimal"/>
+      <xs:attribute name="keepmovingaftercast" type="xs:boolean"/>
+      <xs:attribute name="maxcharges" type="xs:integer"/>
+      <xs:attribute name="maxstack" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="recastdelay" use="required" type="xs:decimal"/>
+      <xs:attribute name="showrange" type="xs:boolean"/>
+      <xs:attribute name="spelleffectlocatag"/>
+      <xs:attribute name="standtime" use="required" type="xs:decimal"/>
+      <xs:attribute name="statblock" use="required"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="triggerautoattackcooldown" type="xs:boolean"/>
+      <xs:attribute name="uisprite" use="required" type="xs:NCName"/>
+      <xs:attribute name="uitype" use="required" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+      <xs:attribute name="unlockedtoequip" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tmx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="body"/>
+      </xs:sequence>
+      <xs:attribute name="version" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="body">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="tu"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tu">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="tuv"/>
+      </xs:sequence>
+      <xs:attribute name="tuid" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tuv">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="seg"/>
+      </xs:sequence>
+      <xs:attribute ref="xml:lang" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="seg" type="xs:string"/>
+  <xs:element name="locareferences">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="description"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="spelleffect"/>
+          <xs:element ref="statblock"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="description">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="locareference"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spelleffect">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="locareference"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="statblock">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="locareference"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfSpellActive">
+    <xs:complexType>
+      <xs:attribute name="atleastcharges" type="xs:integer"/>
+      <xs:attribute name="casterchargesonly" type="xs:boolean"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfOwnHealthPercentage">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="and">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+        <xs:element minOccurs="0" ref="IfTargetHealthPercentage"/>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:choice>
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellActive"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfTargetItemTypeEquipped"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfOwnHealthPercentage"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfOwnEnergyPercentage"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="not">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfChannelTick"/>
+          <xs:element ref="IfTargetHasPowerCrystal"/>
+          <xs:element ref="IfTargetIsInAnyFaction"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfTargetWeaponTypeEquipped"/>
+        <xs:element minOccurs="0" ref="IfInDuel"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTargetItemTypeEquipped"/>
+        <xs:element minOccurs="0" ref="IfTargetIsTransformed"/>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellCategoryActive"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellActive"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfCasterIsInAnyFaction"/>
+          <xs:element ref="IfTargetIsInOpposingFaction"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetHasPowerCrystal">
+    <xs:complexType>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetIsInAnyFaction">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="IfInDuel">
+    <xs:complexType>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spellindicationarea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="area"/>
+      </xs:sequence>
+      <xs:attribute name="maxheightdelta" type="xs:integer"/>
+      <xs:attribute name="position" type="xs:NCName"/>
+      <xs:attribute name="rotation" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="visible" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="clamphitpoints">
+    <xs:complexType>
+      <xs:attribute name="castspellonlyifhpwereabovelimitbefore" type="xs:boolean"/>
+      <xs:attribute name="invisiblitybreakseffect" type="xs:boolean"/>
+      <xs:attribute name="max" type="xs:integer"/>
+      <xs:attribute name="maxnumoftriggeredcasts" type="xs:integer"/>
+      <xs:attribute name="min" type="xs:integer"/>
+      <xs:attribute name="spellontrigger" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:integer"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfClusterArcheType">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="or">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfChannelTick"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTargetMobDangerState"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTargetCCEffect"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfCasterIsInAnyFaction"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTargetMobCategory"/>
+        <xs:element minOccurs="0" ref="IfTargetItemTypeEquipped"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTargetType"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element ref="IfTargetIsTransformed"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="not"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="IfSpellActive"/>
+          <xs:element ref="and"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:element ref="IfTargetIsInOpposingFaction"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfClusterArcheType"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetCCEffect">
+    <xs:complexType>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetMobFaction">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="applyeffectoneventactive">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:choice>
+          <xs:element ref="IfTargetType"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="applychance" type="xs:decimal"/>
+      <xs:attribute name="applyeffecttarget" use="required" type="xs:NCName"/>
+      <xs:attribute name="castspellas" type="xs:NCName"/>
+      <xs:attribute name="chance" type="xs:integer"/>
+      <xs:attribute name="count" type="xs:integer"/>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="removedspell" type="xs:NCName"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spellimmunity">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfSpellActive"/>
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfSpellEffectActive"/>
+          <xs:element ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="category" type="xs:NCName"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="ifcastby" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="pauseeffectwhileofflineorloading" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="spellname"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="cceffectimmunity">
+    <xs:complexType>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="breaksafterimmunityblock" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeactivespell">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfChance"/>
+        <xs:element ref="IfOwnEnergyPercentage"/>
+        <xs:element ref="IfOwnHealthPercentage"/>
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="IfTargetHealthPercentage"/>
+        <xs:element ref="IfVariableOnTarget"/>
+        <xs:element ref="not"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="casterchargesonly" type="xs:boolean"/>
+      <xs:attribute name="charges" type="xs:integer"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="buffovertime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellActive"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfClusterArcheType"/>
+          <xs:element ref="IfOwnHealthPercentage"/>
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="bindtoclusterarchetype" type="xs:NCName"/>
+      <xs:attribute name="breaksoncc" type="xs:NCName"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="diminishingreturnfactor" type="xs:decimal"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusdamagescaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountdurationbonusfactor" type="xs:decimal"/>
+      <xs:attribute name="targetcountvaluebonusfactor" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="applyspell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice>
+          <xs:element ref="IfTargetMobTier"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfTotalNumberOfTargetsOnThreatList"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="IfTargetItemTypeEquipped"/>
+        <xs:element minOccurs="0" ref="IfChannelTick"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfChance"/>
+          <xs:element ref="IfNumberOfTargetsHit"/>
+          <xs:element ref="IfOwnLoadPercent"/>
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element ref="IfTargetHealthPercentage"/>
+          <xs:element ref="IfTargetMobCategory"/>
+          <xs:element ref="IfTargetRange"/>
+          <xs:element ref="and"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfTargetType"/>
+          <xs:element ref="IfTargetWeaponTypeEquipped"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="IfSpellActive"/>
+          <xs:element ref="not"/>
+          <xs:element ref="or"/>
+        </xs:choice>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfOwnHealthPercentage"/>
+        <xs:element minOccurs="0" ref="IfSummonedMobCount"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="Event"/>
+          <xs:element ref="IfConsumeCharges"/>
+          <xs:element ref="IfSpellEffectActive"/>
+          <xs:element ref="IfTargetMobDangerState"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="castspellas" type="xs:NCName"/>
+      <xs:attribute name="chance" type="xs:decimal"/>
+      <xs:attribute name="charges" type="xs:integer"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetMobTier">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTotalNumberOfTargetsOnThreatList">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfSummonedMobCount">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="not"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="Event"/>
+          <xs:element ref="IfTargetHealthPercentage"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="chance" type="xs:decimal"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="skillshotindicatormax" type="xs:integer"/>
+      <xs:attribute name="skillshotindicatormin" type="xs:decimal"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetingtype" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="projectile">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="impactvfx"/>
+        <xs:element minOccurs="0" ref="AudioInfo"/>
+      </xs:sequence>
+      <xs:attribute name="direction" type="xs:NCName"/>
+      <xs:attribute name="fadeouttime" type="xs:decimal"/>
+      <xs:attribute name="flyspeed" type="xs:integer"/>
+      <xs:attribute name="hitsocket" type="xs:NCName"/>
+      <xs:attribute name="ignoresocketscale" type="xs:boolean"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="startsocket" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="impactvfx">
+    <xs:complexType>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="ignoresocketscale" type="xs:boolean"/>
+      <xs:attribute name="impactsocket"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="size" type="xs:decimal"/>
+      <xs:attribute name="soundinit"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="beamvfx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="source"/>
+        <xs:element ref="target"/>
+      </xs:sequence>
+      <xs:attribute name="alive" type="xs:NCName"/>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="duration" type="xs:decimal"/>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="fadeouttime" type="xs:decimal"/>
+      <xs:attribute name="forceTargetAsInstigator" type="xs:boolean"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="size" type="xs:decimal"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spelleffectarea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfConsumeCharges"/>
+          <xs:element ref="IfOwnEnergyPercentage"/>
+          <xs:element ref="not"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="area"/>
+      </xs:sequence>
+      <xs:attribute name="HitBlockedByCollision" type="xs:boolean"/>
+      <xs:attribute name="applyeffectonlyoncepertarget" type="xs:boolean"/>
+      <xs:attribute name="areatag" type="xs:NCName"/>
+      <xs:attribute name="deletewhenmaxtargetshit" type="xs:boolean"/>
+      <xs:attribute name="effect" use="required"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="ignoreremoveallcastrelatedareas" type="xs:boolean"/>
+      <xs:attribute name="interruptscasting" type="xs:boolean"/>
+      <xs:attribute name="landscapecollisioneffect" type="xs:NCName"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="maxheightdelta" type="xs:integer"/>
+      <xs:attribute name="needsguildlogo" type="xs:boolean"/>
+      <xs:attribute name="position" type="xs:NCName"/>
+      <xs:attribute name="positionthenrotationcasterrotation" type="xs:NCName"/>
+      <xs:attribute name="reapplyeffectifnecessary" type="xs:boolean"/>
+      <xs:attribute name="removeoncasterdeath" type="xs:boolean"/>
+      <xs:attribute name="removeoncasterreset" type="xs:boolean"/>
+      <xs:attribute name="removeonlandscapecollision" type="xs:boolean"/>
+      <xs:attribute name="removeonleave" type="xs:boolean"/>
+      <xs:attribute name="removewhencastergone" type="xs:boolean"/>
+      <xs:attribute name="rotation" type="xs:NCName"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="skillshotindicatormax" type="xs:decimal"/>
+      <xs:attribute name="skillshotindicatormin" type="xs:decimal"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountthresholdmax" type="xs:integer"/>
+      <xs:attribute name="targetcountthresholdmin" type="xs:integer"/>
+      <xs:attribute name="targetcountvaluebonusfactor" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="visible" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spawnmob">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="not"/>
+      </xs:choice>
+      <xs:attribute name="anglefromcaster" type="xs:integer"/>
+      <xs:attribute name="distancefromtarget" type="xs:decimal"/>
+      <xs:attribute name="inheritsummonerascaster" type="xs:boolean"/>
+      <xs:attribute name="limit" use="required" type="xs:integer"/>
+      <xs:attribute name="limitreachedbehavor" type="xs:NCName"/>
+      <xs:attribute name="maxdistancetocaster" type="xs:integer"/>
+      <xs:attribute name="onlycastercontrolledaggro" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="ttl" use="required" type="xs:decimal"/>
+      <xs:attribute name="ttlaftercasterdeath" type="xs:decimal"/>
+      <xs:attribute name="ttlaftercasterreset" type="xs:decimal"/>
+      <xs:attribute name="ttlafterreset" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attributechangeovertime">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfTargetMobCategory"/>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="or"/>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="attribute" use="required" type="xs:NCName"/>
+      <xs:attribute name="attributestealfactor" type="xs:decimal"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="change" use="required" type="xs:decimal"/>
+      <xs:attribute name="changetype" type="xs:NCName"/>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="effecttype" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorearmor" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusdamagescaling" type="xs:boolean"/>
+      <xs:attribute name="ignoredodamageevent" type="xs:boolean"/>
+      <xs:attribute name="initialinterval" use="required" type="xs:decimal"/>
+      <xs:attribute name="interruptscasting" type="xs:boolean"/>
+      <xs:attribute name="interval" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="reflectdamage" type="xs:NCName"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountvaluebonusfactor" type="xs:decimal"/>
+      <xs:attribute name="usehealingmodifiers" type="xs:boolean"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="directattributechange">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfConsumeCharges"/>
+        <xs:choice>
+          <xs:element ref="IfNumberOfTargetsHit"/>
+          <xs:element ref="IfTargetRange"/>
+          <xs:element ref="IfVariableOnTarget"/>
+          <xs:element ref="and"/>
+          <xs:element ref="valueoverride"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfOwnEnergyPercentage"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="IfSpellActive"/>
+          <xs:element ref="IfTargetType"/>
+          <xs:element ref="not"/>
+        </xs:choice>
+        <xs:choice minOccurs="0">
+          <xs:element ref="Event"/>
+          <xs:element ref="IfChannelTick"/>
+          <xs:element ref="IfOwnHealthPercentage"/>
+          <xs:element ref="IfSpellCategoryActive"/>
+          <xs:element ref="IfTargetHealthPercentage"/>
+          <xs:element ref="or"/>
+          <xs:element ref="IfIsAnyMobWithVariableInRange"/>
+          <xs:element ref="IfTargetEnergyPercentage"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="attribute" use="required" type="xs:NCName"/>
+      <xs:attribute name="attributestealfactor" type="xs:decimal"/>
+      <xs:attribute name="change" use="required" type="xs:decimal"/>
+      <xs:attribute name="changetype" type="xs:NCName"/>
+      <xs:attribute name="changevaluecap" type="xs:integer"/>
+      <xs:attribute name="changevaluecapabilitypowerprogressionfactor" type="xs:decimal"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="effecttype" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorearmor" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusdamagescaling" type="xs:boolean"/>
+      <xs:attribute name="ignoredodamageevent" type="xs:boolean"/>
+      <xs:attribute name="interruptscasting" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="reflectdamage" type="xs:NCName"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountvaluebonusfactor" type="xs:decimal"/>
+      <xs:attribute name="usehealingmodifiers" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="valueoverride">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="IfCharge"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfCharge">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="change"/>
+      </xs:sequence>
+      <xs:attribute name="casterchargesonly" type="xs:boolean"/>
+      <xs:attribute name="chargespell" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="change">
+    <xs:complexType>
+      <xs:attribute name="mincharges" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfIsAnyMobWithVariableInRange">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="range" use="required" type="xs:integer"/>
+      <xs:attribute name="value" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetEnergyPercentage">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="dummy">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfTargetHealthPercentage"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfSpellActive"/>
+        <xs:choice>
+          <xs:element ref="IfTargetType"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="IfOwnHealthPercentage"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="expireafterdistance" type="xs:integer"/>
+      <xs:attribute name="itempowertimemodifier" type="xs:decimal"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="skillshotindicatormax" type="xs:integer"/>
+      <xs:attribute name="skillshotindicatormin" type="xs:decimal"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetingtype" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="value" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="knockback">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+        <xs:element minOccurs="0" ref="IfTargetType"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfSpellActive"/>
+          <xs:element ref="and"/>
+          <xs:element ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="animID" type="xs:NCName"/>
+      <xs:attribute name="collisioneffect" type="xs:NCName"/>
+      <xs:attribute name="collisioneffecttarget" type="xs:NCName"/>
+      <xs:attribute name="diminishingreturnfactor" type="xs:decimal"/>
+      <xs:attribute name="distance" use="required" type="xs:decimal"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="endeffect" type="xs:NCName"/>
+      <xs:attribute name="fromwhere" type="xs:NCName"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusdamagescaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="movespeed" type="xs:decimal"/>
+      <xs:attribute name="ruleset" type="xs:NCName"/>
+      <xs:attribute name="standtime" type="xs:decimal"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="interruptcast">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="IfTargetType"/>
+        <xs:element ref="IfVariableOnTarget"/>
+        <xs:element ref="not"/>
+        <xs:element ref="IfIsTargetChanneling"/>
+      </xs:choice>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfIsTargetChanneling">
+    <xs:complexType>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spellvfx">
+    <xs:complexType>
+      <xs:attribute name="alive" type="xs:NCName"/>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="duration" type="xs:decimal"/>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="fadeouttime" type="xs:decimal"/>
+      <xs:attribute name="ignoresocketscale" type="xs:boolean"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="scaleAnimSpeedForEnd" type="xs:boolean"/>
+      <xs:attribute name="size" type="xs:decimal"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="soundinit" type="xs:NCName"/>
+      <xs:attribute name="soundshutdown" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+      <xs:attribute name="visibility" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfOwnLoadPercent">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfConsumeCharges">
+    <xs:complexType>
+      <xs:attribute name="casterchargesonly" type="xs:boolean"/>
+      <xs:attribute name="charges" type="xs:integer"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="removeactiveeffects">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="not"/>
+      </xs:choice>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+      <xs:attribute name="charges" type="xs:integer"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spelleffectfx">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="statemapping"/>
+      </xs:sequence>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="duration" type="xs:decimal"/>
+      <xs:attribute name="fadeouttime" type="xs:decimal"/>
+      <xs:attribute name="ignoresocketscale" type="xs:boolean"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="size" type="xs:decimal"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="soundinit"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+      <xs:attribute name="visibility" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="statemapping">
+    <xs:complexType>
+      <xs:attribute name="charge" use="required"/>
+      <xs:attribute name="vfxstate" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="source">
+    <xs:complexType>
+      <xs:attribute name="attachedto" type="xs:NCName"/>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="socket" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="target">
+    <xs:complexType>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="inworldoffset"/>
+      <xs:attribute name="socket" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fofIndicator">
+    <xs:complexType>
+      <xs:attribute name="alive" type="xs:NCName"/>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="duration" type="xs:decimal"/>
+      <xs:attribute name="event" use="required" type="xs:NCName"/>
+      <xs:attribute name="friendlyPrefab"/>
+      <xs:attribute name="hostilePrefab"/>
+      <xs:attribute name="ignoresocketscale" type="xs:boolean"/>
+      <xs:attribute name="size" use="required" type="xs:integer"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="timeoffset" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attackprojectileoverride">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="projectile"/>
+      </xs:sequence>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="tintfx">
+    <xs:complexType>
+      <xs:attribute name="color" use="required"/>
+      <xs:attribute name="fadeintime" type="xs:decimal"/>
+      <xs:attribute name="fadeouttime" type="xs:decimal"/>
+      <xs:attribute name="shaderkeyword" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="pulsingspell">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfConsumeCharges"/>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castspellas" type="xs:NCName"/>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="initialinterval" use="required" type="xs:decimal"/>
+      <xs:attribute name="interval" use="required" type="xs:decimal"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="skillshotindicatormax" type="xs:integer"/>
+      <xs:attribute name="skillshotindicatormin" type="xs:integer"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountvaluebonusfactor" type="xs:integer"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="updatecasterposition" type="xs:NCName"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="teleport">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+      </xs:sequence>
+      <xs:attribute name="endeffect" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="root">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:choice minOccurs="0">
+          <xs:element ref="IfTargetType"/>
+          <xs:element ref="not"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="diminishingreturnfactor" type="xs:integer"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="expireafterdistance" type="xs:decimal"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountdurationbonusfactor" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetRange">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="invisibility">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfTargetType"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:integer"/>
+      <xs:attribute name="expireafterdistance" type="xs:decimal"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="to" type="xs:NCName"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetType">
+    <xs:complexType>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="invincibility">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfOwnHealthPercentage"/>
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="IfSpellEffectActive"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="expireafterdistance" type="xs:decimal"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusdamagescaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="aura">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfOwnLoadPercent"/>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="applyeffectonlyoncepertarget" type="xs:boolean"/>
+      <xs:attribute name="auraconeangle" type="xs:integer"/>
+      <xs:attribute name="auraradius" type="xs:decimal"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="deletewhenmaxtargetshit" type="xs:boolean"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="invisiblitybreakseffect" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxauratargets" type="xs:integer"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="reapplyeffectifnecessary" type="xs:boolean"/>
+      <xs:attribute name="removeonleave" type="xs:boolean"/>
+      <xs:attribute name="showarearadius" type="xs:boolean"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="transformationbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nothittable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="not"/>
+      </xs:sequence>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="persistsafterdeath" type="xs:boolean"/>
+      <xs:attribute name="persistsafterknockdown" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="notselectable">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="nothittablebyothers">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="IfSpellActive"/>
+      </xs:sequence>
+      <xs:attribute name="attackingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="castingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="mountingbreakseffect" type="xs:boolean"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+      <xs:attribute name="worldinteractionbreakseffect" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="stun">
+    <xs:complexType>
+      <xs:choice minOccurs="0">
+        <xs:element ref="IfSpellActive"/>
+        <xs:element ref="IfTargetType"/>
+        <xs:element ref="not"/>
+        <xs:element ref="or"/>
+      </xs:choice>
+      <xs:attribute name="allownegativeeffectonally" type="xs:boolean"/>
+      <xs:attribute name="castablewhenstunned" type="xs:boolean"/>
+      <xs:attribute name="damagebreakseffect" type="xs:boolean"/>
+      <xs:attribute name="diminishingreturnfactor" type="xs:decimal"/>
+      <xs:attribute name="donttriggerdiminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="effectarearadius" type="xs:decimal"/>
+      <xs:attribute name="effectname" type="xs:NCName"/>
+      <xs:attribute name="expireafterdistance" type="xs:decimal"/>
+      <xs:attribute name="ignoreabilitypowerscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorebonusccdurationscaling" type="xs:boolean"/>
+      <xs:attribute name="ignorecrowdcontrolresistance" type="xs:boolean"/>
+      <xs:attribute name="ignorediminishingreturns" type="xs:boolean"/>
+      <xs:attribute name="interruptscasting" type="xs:boolean"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="maxeffectareatargets" type="xs:integer"/>
+      <xs:attribute name="persistsafterclusterchange" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetcountdurationbonusfactor" type="xs:decimal"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="spellvfxoverride">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="weapon"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetItemTypeEquipped">
+    <xs:complexType>
+      <xs:attribute name="shopsubcategory1" use="required" type="xs:NCName"/>
+      <xs:attribute name="slottype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="projectileoverride">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="weapon"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="reflectdamageactive">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="or"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="not"/>
+      </xs:choice>
+      <xs:attribute name="amountabsolute" type="xs:integer"/>
+      <xs:attribute name="amountpercent" use="required" type="xs:decimal"/>
+      <xs:attribute name="astype" use="required" type="xs:NCName"/>
+      <xs:attribute name="damagetype" use="required" type="xs:NCName"/>
+      <xs:attribute name="linktochanneling" type="xs:boolean"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="time" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AudioInfo">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="screenshakeinfo">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftingrequirements">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="vanityunlocked"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="currency"/>
+          <xs:element ref="playerfactionstanding"/>
+        </xs:choice>
+        <xs:element minOccurs="0" ref="mistcitystanding"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftresource"/>
+      </xs:sequence>
+      <xs:attribute name="amountcrafted" type="xs:integer"/>
+      <xs:attribute name="compensategold" type="xs:integer"/>
+      <xs:attribute name="craftingfocus" type="xs:integer"/>
+      <xs:attribute name="craftsingleperdefault" type="xs:boolean"/>
+      <xs:attribute name="forcesinglecraft" type="xs:boolean"/>
+      <xs:attribute name="gold" type="xs:integer"/>
+      <xs:attribute name="returnproductnotresource" type="xs:boolean"/>
+      <xs:attribute name="salvageitemfactor" type="xs:decimal"/>
+      <xs:attribute name="salvagesilverfactor" type="xs:integer"/>
+      <xs:attribute name="silver" type="xs:integer"/>
+      <xs:attribute name="swaptransaction" type="xs:boolean"/>
+      <xs:attribute name="time" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vanityunlocked">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="currency">
+    <xs:complexType>
+      <xs:attribute name="amount" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="playerfactionstanding">
+    <xs:complexType>
+      <xs:attribute name="faction" use="required" type="xs:NCName"/>
+      <xs:attribute name="minstanding" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="mistcitystanding">
+    <xs:complexType>
+      <xs:attribute name="minstanding" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftresource">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" type="xs:integer"/>
+      <xs:attribute name="maxreturnamount" type="xs:integer"/>
+      <xs:attribute name="preservequality" type="xs:boolean"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftingspelllist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="craftspell"/>
+      </xs:sequence>
+      <xs:attribute name="reference" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="craftspell">
+    <xs:complexType>
+      <xs:attribute name="slots" type="xs:integer"/>
+      <xs:attribute name="tag" type="xs:NCName"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SocketPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NMTOKEN"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AssetVfxPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enchantments">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="enchantment"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="enchantment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="craftingrequirements"/>
+        <xs:element minOccurs="0" ref="upgraderequirements"/>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" type="xs:integer"/>
+      <xs:attribute name="consumespell" type="xs:NCName"/>
+      <xs:attribute name="dummyitempower" type="xs:integer"/>
+      <xs:attribute name="durability" type="xs:integer"/>
+      <xs:attribute name="enchantmentlevel" use="required" type="xs:integer"/>
+      <xs:attribute name="itempower" type="xs:integer"/>
+      <xs:attribute name="nutrition" type="xs:integer"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="upgraderequirements">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="upgraderesource"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="upgraderesource">
+    <xs:complexType>
+      <xs:attribute name="count" use="required" type="xs:integer"/>
+      <xs:attribute name="uniquename" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="validitem">
+    <xs:complexType>
+      <xs:attribute name="id" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="weapon">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="attackvariations"/>
+        <xs:choice>
+          <xs:element ref="canharvest"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="projectile"/>
+        </xs:choice>
+        <xs:choice>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="spellvfx"/>
+          <xs:choice minOccurs="0" maxOccurs="unbounded">
+            <xs:element ref="AssetVfxPreset"/>
+            <xs:element ref="AudioInfo"/>
+            <xs:element ref="SocketPreset"/>
+            <xs:element ref="attackvfx"/>
+            <xs:element ref="craftingrequirements"/>
+            <xs:element ref="craftingspelllist"/>
+            <xs:element ref="enchantments"/>
+          </xs:choice>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="abilitypower" type="xs:integer"/>
+      <xs:attribute name="activespellslots" type="xs:integer"/>
+      <xs:attribute name="attackbuildingdamage" type="xs:decimal"/>
+      <xs:attribute name="attackdamage" type="xs:integer"/>
+      <xs:attribute name="attackdamagetimefactor" type="xs:decimal"/>
+      <xs:attribute name="attackendanimgaptime" type="xs:decimal"/>
+      <xs:attribute name="attackendanimscalemode" type="xs:NCName"/>
+      <xs:attribute name="attackrange" type="xs:decimal"/>
+      <xs:attribute name="attackspeed" type="xs:decimal"/>
+      <xs:attribute name="attackspeedbonus" type="xs:integer"/>
+      <xs:attribute name="attacktype" type="xs:NCName"/>
+      <xs:attribute name="attackupperbodyblendtime" type="xs:decimal"/>
+      <xs:attribute name="bonusccdurationvsmobs" type="xs:integer"/>
+      <xs:attribute name="bonusccdurationvsplayers" type="xs:integer"/>
+      <xs:attribute name="bonusdefensevsmobs" type="xs:integer"/>
+      <xs:attribute name="bonusdefensevsplayers" type="xs:integer"/>
+      <xs:attribute name="canbeovercharged" type="xs:boolean"/>
+      <xs:attribute name="combatspecachievement" type="xs:NCName"/>
+      <xs:attribute name="craftingcategory" type="xs:NCName"/>
+      <xs:attribute name="crowdcontrolresistance" type="xs:integer"/>
+      <xs:attribute name="descriptionlocatag"/>
+      <xs:attribute name="destinyandjournalcraftfamefactor" type="xs:decimal"/>
+      <xs:attribute name="durability" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_attack" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedattack" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_receivedspell" type="xs:integer"/>
+      <xs:attribute name="durabilityloss_spelluse" type="xs:integer"/>
+      <xs:attribute name="energymax" type="xs:integer"/>
+      <xs:attribute name="energyregenerationbonus" type="xs:integer"/>
+      <xs:attribute name="fishing" type="xs:boolean"/>
+      <xs:attribute name="fishingspeed" type="xs:decimal"/>
+      <xs:attribute name="focusfireprotectionpenetration" type="xs:decimal"/>
+      <xs:attribute name="fxbonename" type="xs:NCName"/>
+      <xs:attribute name="fxboneoffset"/>
+      <xs:attribute name="healbonus" type="xs:integer"/>
+      <xs:attribute name="healmodifier" type="xs:integer"/>
+      <xs:attribute name="hidefromplayeroncontext" type="xs:NCName"/>
+      <xs:attribute name="hitpointsmax" type="xs:integer"/>
+      <xs:attribute name="hitpointsregenerationbonus" type="xs:decimal"/>
+      <xs:attribute name="id" type="xs:NCName"/>
+      <xs:attribute name="itempower" type="xs:integer"/>
+      <xs:attribute name="itempowerprogressiontype" type="xs:NCName"/>
+      <xs:attribute name="magicattackdamagebonus" type="xs:integer"/>
+      <xs:attribute name="magiccasttimereduction" type="xs:integer"/>
+      <xs:attribute name="magiccooldownreduction" type="xs:integer"/>
+      <xs:attribute name="magicresistance" type="xs:integer"/>
+      <xs:attribute name="magicspelldamagebonus" type="xs:integer"/>
+      <xs:attribute name="mainhandanimationtype"/>
+      <xs:attribute name="mainhandanimationtype_attack" type="xs:NCName"/>
+      <xs:attribute name="mainhandanimationtype_repairbuilding"/>
+      <xs:attribute name="masterymodifier" type="xs:decimal"/>
+      <xs:attribute name="maxqualitylevel" type="xs:integer"/>
+      <xs:attribute name="mesh" type="xs:NCName"/>
+      <xs:attribute name="movespeedbonus" type="xs:integer"/>
+      <xs:attribute name="namelocatag"/>
+      <xs:attribute name="passivespellslots" type="xs:integer"/>
+      <xs:attribute name="physicalarmor" type="xs:integer"/>
+      <xs:attribute name="physicalattackdamagebonus" type="xs:integer"/>
+      <xs:attribute name="physicalspelldamagebonus" type="xs:integer"/>
+      <xs:attribute name="repairbuildingdamage" type="xs:integer"/>
+      <xs:attribute name="requiredaccesslevel" type="xs:integer"/>
+      <xs:attribute name="salvageable" type="xs:boolean"/>
+      <xs:attribute name="scaleattackendanimmode" type="xs:boolean"/>
+      <xs:attribute name="shopcategory" type="xs:NCName"/>
+      <xs:attribute name="shopsubcategory1" type="xs:NCName"/>
+      <xs:attribute name="showinmarketplace" type="xs:boolean"/>
+      <xs:attribute name="skincount" type="xs:integer"/>
+      <xs:attribute name="slottype" type="xs:NCName"/>
+      <xs:attribute name="threatbonus" type="xs:integer"/>
+      <xs:attribute name="tier" type="xs:integer"/>
+      <xs:attribute name="tradable" type="xs:boolean"/>
+      <xs:attribute name="triggershealingsickness" type="xs:boolean"/>
+      <xs:attribute name="twohanded" type="xs:boolean"/>
+      <xs:attribute name="uicraftsoundfinish"/>
+      <xs:attribute name="uicraftsoundstart" type="xs:NCName"/>
+      <xs:attribute name="uisprite" type="xs:NMTOKEN"/>
+      <xs:attribute name="unequipincombat" type="xs:boolean"/>
+      <xs:attribute name="uniquename" type="xs:NCName"/>
+      <xs:attribute name="unlockedtocraft" type="xs:boolean"/>
+      <xs:attribute name="unlockedtoequip" type="xs:boolean"/>
+      <xs:attribute name="weight" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="canharvest">
+    <xs:complexType>
+      <xs:attribute name="resourcetype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="FootStepVfxPreset">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attackvariations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="attack"/>
+      </xs:sequence>
+      <xs:attribute name="attackchaintime" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attack">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="attackvfx"/>
+      </xs:sequence>
+      <xs:attribute name="attackdamagefactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attackdamagetimefactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attackspeedfactor" use="required" type="xs:decimal"/>
+      <xs:attribute name="attacktype" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="locareference">
+    <xs:complexType>
+      <xs:attribute name="tag" use="required"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetHealthPercentage">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfSpellCategoryActive">
+    <xs:complexType>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfOwnEnergyPercentage">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfChannelTick">
+    <xs:complexType>
+      <xs:attribute name="modulo" type="xs:integer"/>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetWeaponTypeEquipped">
+    <xs:complexType>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetIsTransformed">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="IfTargetIsInOpposingFaction">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="IfCasterIsInAnyFaction">
+    <xs:complexType/>
+  </xs:element>
+  <xs:element name="area">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="shape"/>
+        <xs:element minOccurs="0" ref="fill"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="shape">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="positionnode"/>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element ref="arc"/>
+          <xs:element ref="circle"/>
+          <xs:element ref="node"/>
+          <xs:element ref="rectangle"/>
+        </xs:choice>
+      </xs:choice>
+      <xs:attribute name="material" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="fill">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="rectangle"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="circle"/>
+        <xs:choice>
+          <xs:element ref="positionnode"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="node"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="arc"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attribute name="material" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetMobDangerState">
+    <xs:complexType>
+      <xs:attribute name="state" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfTargetMobCategory">
+    <xs:complexType>
+      <xs:attribute name="category" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfSpellEffectActive">
+    <xs:complexType>
+      <xs:attribute name="effectname" use="required" type="xs:NCName"/>
+      <xs:attribute name="spell" use="required" type="xs:NCName"/>
+      <xs:attribute name="who" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfChance">
+    <xs:complexType>
+      <xs:attribute name="value" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfVariableOnTarget">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="op" type="xs:NCName"/>
+      <xs:attribute name="value" type="xs:boolean"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IfNumberOfTargetsHit">
+    <xs:complexType>
+      <xs:attribute name="op" use="required" type="xs:NCName"/>
+      <xs:attribute name="value" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Event">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="Spell"/>
+      </xs:sequence>
+      <xs:attribute name="count" type="xs:integer"/>
+      <xs:attribute name="type" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="Spell">
+    <xs:complexType>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="attackvfx">
+    <xs:complexType>
+      <xs:attribute name="constraintpreset" type="xs:NCName"/>
+      <xs:attribute name="prefab" use="required"/>
+      <xs:attribute name="socket" type="xs:NCName"/>
+      <xs:attribute name="target" use="required" type="xs:NCName"/>
+      <xs:attribute name="visibility" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="positionnode">
+    <xs:complexType>
+      <xs:choice>
+        <xs:element ref="circle"/>
+        <xs:element ref="rectangle"/>
+      </xs:choice>
+      <xs:attribute name="startoffsetangle" type="xs:integer"/>
+      <xs:attribute name="startoffsetdistance" type="xs:decimal"/>
+      <xs:attribute name="startposition" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetposition" use="required" type="xs:NCName"/>
+      <xs:attribute name="targetreachedat" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="circle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="beamvfx"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="spellvfx"/>
+        <xs:element minOccurs="0" ref="fofIndicator"/>
+      </xs:sequence>
+      <xs:attribute name="radius"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rectangle">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="beamvfx"/>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="spellvfx"/>
+      </xs:sequence>
+      <xs:attribute name="height"/>
+      <xs:attribute name="width"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="node">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element ref="arc"/>
+        <xs:element ref="circle"/>
+        <xs:element ref="node"/>
+        <xs:element ref="rectangle"/>
+      </xs:choice>
+      <xs:attribute name="angle"/>
+      <xs:attribute name="distance"/>
+      <xs:attribute name="overridespell" type="xs:NCName"/>
+      <xs:attribute name="overridespellpriority" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="arc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="spellvfx"/>
+      </xs:sequence>
+      <xs:attribute name="angle"/>
+      <xs:attribute name="innerradius"/>
+      <xs:attribute name="outerradius"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
