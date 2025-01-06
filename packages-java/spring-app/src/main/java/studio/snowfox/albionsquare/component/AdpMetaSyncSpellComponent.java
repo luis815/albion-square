@@ -1,6 +1,7 @@
 package studio.snowfox.albionsquare.component;
 
 import com.albion_online_data.ao_bin_dumps.Spells;
+import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import org.springframework.batch.core.*;
@@ -12,8 +13,6 @@ import org.springframework.stereotype.Component;
 import studio.snowfox.albionsquare.repository.AdpMetaSyncSpellObjectRepository;
 import studio.snowfox.albionsquare.repository.AlbionOnlineSpellRepository;
 
-import java.time.LocalDateTime;
-
 @Log
 @Component
 @RequiredArgsConstructor
@@ -23,7 +22,9 @@ public class AdpMetaSyncSpellComponent {
     private final Job adpMetasyncSpellJob;
     private final JobLauncher jobLauncher;
 
-    public void load(Spells spells, String sha) throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException, JobParametersInvalidException, JobRestartException {
+    public void load(Spells spells, String sha)
+            throws JobInstanceAlreadyCompleteException, JobExecutionAlreadyRunningException,
+                    JobParametersInvalidException, JobRestartException {
         this.adpMetaSyncSpellObjectRepository.deleteAll();
         this.adpMetaSyncSpellObjectRepository.saveAll(spells.getActivespellOrPassivespellOrTogglespell());
 

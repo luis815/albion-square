@@ -1,10 +1,9 @@
 package studio.snowfox.albionsquare.repository;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 @Repository
 public class AdpMetaSyncSpellObjectRepository {

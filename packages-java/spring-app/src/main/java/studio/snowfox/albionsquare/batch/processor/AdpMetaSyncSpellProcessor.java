@@ -12,7 +12,7 @@ public class AdpMetaSyncSpellProcessor implements ItemProcessor<Object, AlbionOn
     public AlbionOnlineSpell process(Object item) throws Exception {
         AlbionOnlineSpell spell = new AlbionOnlineSpell();
 
-        spell.setUniqueName( (String) item.getClass().getMethod("getUniquename").invoke(item) );
+        spell.setUniqueName((String) item.getClass().getMethod("getUniquename").invoke(item));
         spell.setSha(sha);
 
         return spell;
